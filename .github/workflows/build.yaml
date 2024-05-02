@@ -1,0 +1,31 @@
+name: Build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - devnet
+      - 'build/**'
+
+env: 
+  APP_REPO: nexis-solana
+
+jobs:
+  docker-build-push:
+    name: Build and push
+    runs-on: build-dedicated
+    outputs:
+      repository: ${{ steps.build.outputs.repository }}
+      image_tag: ${{ steps.build.outputs.image_tag }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build, tag, and push image 
+        id: build
+        env:
+          REGISTRY: ${{ secrets.REGISTRY_HOST }}/nexis
+          REPOSITORY: ${{ env.APP_REPO }}
+          IMAGE_TAG: ${{github.sha}}
+        run: |
+          docker pull ubuntu:20.04
+          DOCKER_BUILDKIT=1 docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --no-cache  .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG

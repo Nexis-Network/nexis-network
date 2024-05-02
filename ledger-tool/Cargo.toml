@@ -1,0 +1,60 @@
+[package]
+authors = ["Solana Maintainers <maintainers@solana.foundation>"]
+edition = "2021"
+name = "solana-ledger-tool"
+description = "Blockchain, Rebuilt for Scale"
+version = "1.13.7"
+repository = "https://github.com/solana-labs/solana"
+license = "Apache-2.0"
+homepage = "https://solana.com/"
+documentation = "https://docs.rs/solana-ledger-tool"
+
+[dependencies]
+base64 = "0.13.0"
+clap = "2.33.1"
+crossbeam-channel = "0.5"
+csv = "1.1.6"
+dashmap = "4.0.2"
+histogram = "0.6.9"
+itertools = "0.10.3"
+log = { version = "0.4.14" }
+regex = "1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.79"
+solana-clap-utils = { path = "../clap-utils", version = "=1.13.7" }
+solana-cli-output = { path = "../cli-output", version = "=1.13.7" }
+solana-core = { path = "../core", version = "=1.13.7" }
+solana-entry = { path = "../entry", version = "=1.13.7" }
+solana-ledger = { path = "../ledger", version = "=1.13.7" }
+solana-logger = { path = "../logger", version = "=1.13.7" }
+solana-measure = { path = "../measure", version = "=1.13.7" }
+solana-runtime = { path = "../runtime", version = "=1.13.7" }
+solana-sdk = { path = "../sdk", version = "=1.13.7" }
+solana-stake-program = { path = "../programs/stake", version = "=1.13.7" }
+solana-storage-bigtable = { path = "../storage-bigtable", version = "=1.13.7" }
+solana-transaction-status = { path = "../transaction-status", version = "=1.13.7" }
+solana-version = { path = "../version", version = "=0.7.0" }
+solana-vote-program = { path = "../programs/vote", version = "=1.13.7" }
+tokio = { version = "~1", features = ["full"] }
+
+evm-state = { path = "../evm-utils/evm-state" }
+evm-rpc = { path = "../evm-utils/evm-rpc" }
+solana-evm-loader-program = { path = "../evm-utils/programs/evm_loader" }
+triedb = { git = "https://github.com/velas/triedb", tag = "primitive-types-v0.12", features = ["rocksdb"] }
+rlp = "0.5.0"
+anyhow = "1.0.43"
+rayon = "1.5.0"
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+jemallocator = { package = "tikv-jemallocator", version = "0.4.1", features = ["unprefixed_malloc_on_supported_platforms"] }
+
+[dev-dependencies]
+assert_cmd = "2.0"
+quickcheck = "1.0.3"
+quickcheck_macros = "1.0.0"
+bytecount = "0.6.2"
+
+[target."cfg(unix)".dependencies]
+signal-hook = "0.3.13"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
