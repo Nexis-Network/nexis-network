@@ -30,14 +30,14 @@ $ softwareupdate --install-rosetta
 ## **2. Download the source code.**
 
 ```bash
-$ git clone https://github.com/nexis/nexis-chain.git
-$ cd nexis-chain
+$ git clone https://github.com/Nexis-Network/nexis-network.git
+$ cd nexis-network
 ```
 
 ## **3. Build.**
 
 ```bash
-$ cargo build
+$ cargo build --release
 ```
 
 ## **4. Run a minimal local cluster.**
@@ -54,13 +54,13 @@ $ cargo test --no-fail-fast
 ```
 
 ### EVM integration
-Info about EVM integration is at our [docs](https://docs.nexis.network/evm).
+Info about EVM integration is at our [docs](https://docs.nexis.network/).
 
 ### Starting a local testnet
 Start your own Development network locally, instructions are in the [online docs](https://docs.nexis.network/cluster/bench-tps).
 
 ### Accessing the remote testnet and mainnet
-* `testnet` - public accessible via bootstrap.testnet.veladev.net.
+* `testnet` - public accessible via bootstrap-testnet.nexis.network.
 * `mainnet` - public accessible via bootstrap.nexis.network.
 
 # Benchmarking
