@@ -8121,7 +8121,7 @@ dependencies = [
 
 [[package]]
 name = "solana-version"
-version = "0.7.0"
+version = "1.0.0"
 dependencies = [
  "log 0.4.19",
  "rustc_version 0.4.0",

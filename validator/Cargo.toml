@@ -51,7 +51,7 @@ solana-send-transaction-service = { path = "../send-transaction-service", versio
 solana-storage-bigtable = { path = "../storage-bigtable", version = "=1.13.7" }
 solana-streamer = { path = "../streamer", version = "=1.13.7" }
 solana-test-validator = { path = "../test-validator", version = "=1.13.7" }
-solana-version = { path = "../version", version = "=0.7.0" }
+solana-version = { path = "../version", version = "=1.0.0" }
 solana-vote-program = { path = "../programs/vote", version = "=1.13.7" }
 symlink = "0.1.0"
 
