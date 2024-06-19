@@ -82,3 +82,13 @@ $ cargo +nightly bench
 
 The release process for this project is described [here](RELEASE.md).
 
+
+# Disclaimer
+
+All claims, content, designs, algorithms, estimates, roadmaps, specifications, and performance measurements described in this project are based on good faith efforts by the Nexis Network development team. It is up to the reader to verify their accuracy and truthfulness. Nothing in this project constitutes a solicitation for investment.
+
+Any content produced by the Nexis Network team or developer resources provided are for educational and inspirational purposes only. Nexis Network does not encourage, induce, or sanction the deployment, integration, or use of any such applications (including the code comprising the Nexis Network blockchain protocol) in violation of applicable laws or regulations and hereby prohibits any such deployment, integration, or use. This includes the use of any such applications by the reader (a) in violation of export control or sanctions laws of the United States or any other applicable jurisdiction, (b) if the reader is located in or ordinarily resident in a country or territory subject to comprehensive sanctions administered by the U.S. Office of Foreign Assets Control (OFAC), or (c) if the reader is or is working on behalf of a Specially Designated National (SDN) or a person subject to similar blocking or denied party prohibitions.
+
+The reader should be aware that U.S. export control and sanctions laws prohibit U.S. persons (and other persons that are subject to such laws) from transacting with persons in certain countries and territories or those on the SDN list. Accordingly, there is a risk that individuals using any of the code contained in this repository, or a derivation thereof, may be sanctioned persons, and transactions with such persons would be a violation of U.S. export controls and sanctions law.
+
+Nexis Network has drawn inspiration and incorporated source code implementations, logic, and architectural ideas from several prominent blockchain projects, including Solana, Polygon zkEVM, Cosmos WASM, and Velas. While these references have guided the development of Nexis Network, it is the responsibility of the reader to ensure that any usage complies with all applicable laws and regulations.
