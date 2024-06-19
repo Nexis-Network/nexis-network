@@ -82,6 +82,10 @@ $ cargo +nightly bench
 
 The release process for this project is described [here](RELEASE.md).
 
+# Blockchain Audit Reports
+
+The audit process and information regarding the Nexis Network blockchain can be found [here](https://github.com/Nexis-Network/NEXIS-Audit-Reports/tree/main).
+
 
 # Disclaimer
 
