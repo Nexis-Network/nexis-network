@@ -255,7 +255,7 @@ trait Bip44 {
 struct Nexis;
 
 impl Bip44 for Nexis {
-    const COIN: u32 = 5655640;
+    const COIN: u32 = 2091;
 }
 
 #[cfg(test)]

@@ -11,8 +11,8 @@ mkdir -p "$SOLANA_CONFIG_DIR"/latest-mainnet-beta-snapshot
 (
   cd "$SOLANA_CONFIG_DIR"/latest-mainnet-beta-snapshot || exit 1
   set -x
-  wget http://api.mainnet-beta.nexis.network/genesis.tar.bz2
-  wget --trust-server-names http://api.mainnet-beta.nexis.network/snapshot.tar.bz2
+  wget https://api.mainnet.nexis.network/genesis.tar.bz2
+  wget --trust-server-names https://api.mainnet.nexis.network/snapshot.tar.bz2
 )
 
 snapshot=$(ls "$SOLANA_CONFIG_DIR"/latest-mainnet-beta-snapshot/snapshot-[0-9]*-*.tar.zst)

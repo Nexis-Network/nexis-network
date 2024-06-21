@@ -17,8 +17,8 @@ extern crate solana_frozen_abi_macro;
 pub use solana_sdk::vote::program::{check_id, id};
 
 
-/// Amount of stake to be in majority = 1M
-pub const MIN_STAKERS_TO_BE_MAJORITY: u64 = 1_000_000 * solana_sdk::native_token::LAMPORTS_PER_NZT;
+/// Amount of stake to be in majority = 10k
+pub const MIN_STAKERS_TO_BE_MAJORITY: u64 = 10_000 * solana_sdk::native_token::LAMPORTS_PER_NZT;
 
 /// Number of stakers with lamports more than 1M, to start filtering = 19
 pub const NUM_MAJOR_STAKERS_FOR_FILTERING: usize = 19;

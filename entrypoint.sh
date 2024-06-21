@@ -103,10 +103,10 @@ run_evm_bridge() {
             CHAIN_ID=57005
         ;;
         "mainnet")
-            CHAIN_ID=105
+            CHAIN_ID=1229
         ;;
         "testnet")
-            CHAIN_ID=111
+            CHAIN_ID=2370
         ;;
     esac
     # RUN evm bridge with specific logs configuration

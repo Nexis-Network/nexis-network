@@ -25,7 +25,7 @@ pub struct GithubRelease {
 impl GithubRelease {
     pub fn download_url(&self, target: &str) -> String {
         format!(
-            "https://github.com/nexis-network/nexis-chain/releases/download/{}/nexis-release-{}.tar.bz2",
+            "https://github.com/nexis-network/nexis-network/releases/download/{}/nexis-release-{}.tar.bz2",
             self.tag_name, target
         )
     }

@@ -168,7 +168,7 @@ where
 // TODO: Implement some procedural macro to render this in more
 pub static ETH_TO_NZT_ADDR: Lazy<H160> = Lazy::new(|| {
     H160::from_str(concat!(
-        "56454c41532d434841494e", // 'Nexis-CHAIN'
+        "56454c41532d434841494e", // 'nexis-network'
         "0000000000",             // just spaces
         "53574150",               // 'SWAP'
     ))

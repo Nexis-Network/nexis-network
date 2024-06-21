@@ -16,9 +16,9 @@
 { # this ensures the entire script is downloaded #
     
     if [ -z "$SOLANA_DOWNLOAD_ROOT" ]; then
-        SOLANA_DOWNLOAD_ROOT="https://github.com/nexis-network/nexis-chain/releases/download/"
+        SOLANA_DOWNLOAD_ROOT="https://github.com/nexis-network/nexis-network/releases/download/"
     fi
-    GH_LATEST_RELEASE="https://api.github.com/repos/nexis-network/nexis-chain/releases/latest"
+    GH_LATEST_RELEASE="https://api.github.com/repos/nexis-network/nexis-network/releases/latest"
     
     set -e
     

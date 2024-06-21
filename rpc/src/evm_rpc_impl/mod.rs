@@ -193,7 +193,7 @@ impl GeneralERPC for GeneralErpcImpl {
     fn client_version(&self, _meta: Self::Metadata) -> Result<String, Error> {
         // same as `version` at /version/Cargo.toml
         Ok(format!(
-            "nexis-chain/v{}",
+            "nexis-network/v{}",
             solana_version::semver!().to_string()
         ))
     }

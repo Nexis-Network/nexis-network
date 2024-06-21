@@ -49,7 +49,8 @@ source venv/bin/activate
 echo --- Fetch/build grafcli
 (
   set -x
-  git clone git@github.com:mvines/grafcli.git -b experimental-v5 venv/grafcli
+  #git clone git@github.com:mvines/grafcli.git -b experimental-v5 venv/grafcli
+  git clone https://github.com/mvines/grafcli.git -b experimental-v5 venv/grafcli
   cd venv/grafcli
   python3 setup.py install
 )
