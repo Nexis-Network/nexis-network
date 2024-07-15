@@ -22,7 +22,7 @@ async fn redirect(
     jsonrpc: Option<Version>,
     id: Id,
 ) -> Option<Output> {
-    debug!("Method not found! Redirecting to node...");
+    debug!("{} Method not found! Redirecting to node...",call_json);
     let response = match meta.rpc_client._send_request(call_json).await {
         Ok(response) => response,
         Err(err) => {
