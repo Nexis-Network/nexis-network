@@ -13781,7 +13781,7 @@
         "options": [],
         "query": "show databases",
         "refresh": 1,
-        "regex": "(devnet|tds|mainnet-beta|testnet.*)",
+        "regex": "(spark|tds|mainnet-beta|testnet.*)",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",

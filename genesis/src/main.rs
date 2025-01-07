@@ -503,7 +503,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
                     compute_hashes_per_tick(poh_config.target_tick_duration, 1_000_000);
                 poh_config.hashes_per_tick = Some(hashes_per_tick / 2); // use 50% of peak ability
             }
-            ClusterType::Devnet | ClusterType::Testnet | ClusterType::MainnetBeta => {
+            ClusterType::Spark | ClusterType::Testnet | ClusterType::MainnetBeta => {
                 poh_config.hashes_per_tick = Some(clock::DEFAULT_HASHES_PER_TICK);
             }
         },
@@ -520,7 +520,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
     } else {
         match cluster_type {
             ClusterType::Development => clock::DEFAULT_DEV_SLOTS_PER_EPOCH,
-            ClusterType::Devnet | ClusterType::Testnet | ClusterType::MainnetBeta => {
+            ClusterType::Spark | ClusterType::Testnet | ClusterType::MainnetBeta => {
                 clock::DEFAULT_SLOTS_PER_EPOCH
             }
         }
@@ -537,7 +537,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
         match cluster_type {
             ClusterType::MainnetBeta => genesis_config::EVM_MAINNET_CHAIN_ID,
             ClusterType::Testnet => genesis_config::EVM_TESTNET_CHAIN_ID,
-            ClusterType::Devnet | ClusterType::Development => genesis_config::EVM_DEVELOP_CHAIN_ID,
+            ClusterType::Spark | ClusterType::Development => genesis_config::EVM_DEVELOP_CHAIN_ID,
         }
     };
 
@@ -649,7 +649,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
 
     if matches!(
         genesis_config.cluster_type,
-        ClusterType::Development | ClusterType::Devnet
+        ClusterType::Development | ClusterType::Spark
     ) {
         solana_runtime::genesis_utils::activate_all_features(&mut genesis_config);
     } else {

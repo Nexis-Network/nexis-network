@@ -314,7 +314,7 @@ pub fn get_clap_app<'ab, 'v>(name: &str, about: &'ab str, version: &'v str) -> A
                 .validator(is_url_or_moniker)
                 .help(
                     "URL for Solana's JSON RPC or moniker (or their first letter): \
-                       [mainnet-beta, testnet, devnet, localhost]",
+                       [mainnet-beta, testnet, spark, localhost]",
                 ),
         )
         .arg(

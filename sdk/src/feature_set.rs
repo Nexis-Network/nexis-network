@@ -37,7 +37,7 @@ pub mod pico_inflation {
 }
 
 pub mod full_inflation {
-    pub mod devnet_and_testnet_nexis_mainnet {
+    pub mod spark_and_testnet_nexis_mainnet {
         solana_sdk::declare_id!("DT4n6ABDqs6w4bnfwrXT9rsprcPf6cdDga1egctaPkLC");
     }
 
@@ -539,7 +539,7 @@ lazy_static! {
         (secp256k1_program_enabled::id(), "secp256k1 program"),
         (deprecate_rewards_sysvar::id(), "deprecate unused rewards sysvar"),
         (pico_inflation::id(), "pico inflation"),
-        (full_inflation::devnet_and_testnet_nexis_mainnet::id(), "full inflation on devnet and testnet"),
+        (full_inflation::spark_and_testnet_nexis_mainnet::id(), "full inflation on spark and testnet"),
         (spl_token_v2_multisig_fix::id(), "spl-token multisig fix"),
         (no_overflow_rent_distribution::id(), "no overflow rent distribution"),
         (filter_stake_delegation_accounts::id(), "filter stake_delegation_accounts #14062"),
@@ -742,8 +742,8 @@ impl FeatureSet {
             })
             .collect::<HashSet<_>>();
 
-        if self.is_active(&full_inflation::devnet_and_testnet_nexis_mainnet::id()) {
-            hash_set.insert(full_inflation::devnet_and_testnet_nexis_mainnet::id());
+        if self.is_active(&full_inflation::spark_and_testnet_nexis_mainnet::id()) {
+            hash_set.insert(full_inflation::spark_and_testnet_nexis_mainnet::id());
         }
         hash_set
     }
@@ -774,15 +774,15 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_full_inflation_features_enabled_devnet_and_testnet() {
+    fn test_full_inflation_features_enabled_spark_and_testnet() {
         let mut feature_set = FeatureSet::default();
         assert!(feature_set.full_inflation_features_enabled().is_empty());
         feature_set
             .active
-            .insert(full_inflation::devnet_and_testnet_nexis_mainnet::id(), 42);
+            .insert(full_inflation::spark_and_testnet_nexis_mainnet::id(), 42);
         assert_eq!(
             feature_set.full_inflation_features_enabled(),
-            [full_inflation::devnet_and_testnet_nexis_mainnet::id()]
+            [full_inflation::spark_and_testnet_nexis_mainnet::id()]
                 .iter()
                 .cloned()
                 .collect()

@@ -3198,7 +3198,7 @@ impl ReplayStage {
     pub fn get_unlock_switch_vote_slot(cluster_type: ClusterType) -> Slot {
         match cluster_type {
             ClusterType::Development => 0,
-            ClusterType::Devnet => 0,
+            ClusterType::Spark => 0,
             // Epoch 63
             ClusterType::Testnet => 21_692_256,
             // 400_000 slots into epoch 61

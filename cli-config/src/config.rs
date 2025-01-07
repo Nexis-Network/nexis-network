@@ -29,7 +29,7 @@ lazy_static! {
 pub struct Config {
     /// The RPC address of a Solana validator node.
     ///
-    /// Typical values for mainnet, devnet, and testnet are [described in the
+    /// Typical values for mainnet, spark, and testnet are [described in the
     /// Solana documentation][rpcdocs].
     ///
     /// For local testing, the typical value is `http://localhost:8899`.
@@ -177,13 +177,13 @@ mod test {
     #[test]
     fn compute_websocket_url() {
         assert_eq!(
-            Config::compute_websocket_url("http://api.devnet.nexis.network"),
-            "ws://api.devnet.nexis.network/".to_string()
+            Config::compute_websocket_url("http://api.spark.nexis.network"),
+            "ws://api.spark.nexis.network/".to_string()
         );
 
         assert_eq!(
-            Config::compute_websocket_url("https://api.devnet.nexis.network"),
-            "wss://api.devnet.nexis.network/".to_string()
+            Config::compute_websocket_url("https://api.spark.nexis.network"),
+            "wss://api.spark.nexis.network/".to_string()
         );
 
         assert_eq!(

@@ -4602,7 +4602,7 @@ dependencies = [
  "solana-sdk 1.13.4",
  "solana-transaction-status",
  "solana-vote-program",
- "spl-memo",
+ "nzt-memo",
 ]
 
 [[package]]
@@ -4785,7 +4785,7 @@ dependencies = [
  "solana-metrics",
  "solana-sdk 1.13.4",
  "solana-version",
- "spl-memo",
+ "nzt-memo",
  "thiserror",
  "tokio",
 ]
@@ -5664,7 +5664,7 @@ dependencies = [
  "solana-sdk 1.13.4",
  "solana-vote-program",
  "spl-associated-token-account",
- "spl-memo",
+ "nzt-memo",
  "spl-token",
  "spl-token-2022",
  "thiserror",
@@ -5884,7 +5884,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "spl-memo"
+name = "nzt-memo"
 version = "3.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bd0dc6f70db6bacea7ff25870b016a65ba1d1b6013536f08e4fd79a8f9005325"
@@ -5920,7 +5920,7 @@ dependencies = [
  "num_enum",
  "solana-program 1.10.33",
  "solana-zk-token-sdk 1.10.33",
- "spl-memo",
+ "nzt-memo",
  "spl-token",
  "thiserror",
 ]

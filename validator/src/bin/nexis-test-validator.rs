@@ -90,7 +90,7 @@ fn main() {
                 .validator(is_url_or_moniker)
                 .help(
                     "URL for Solana's JSON RPC or moniker (or their first letter): \
-                   [mainnet-beta, testnet, devnet, localhost]",
+                   [mainnet-beta, testnet, spark, localhost]",
                 ),
         )
         .arg(

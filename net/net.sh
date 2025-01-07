@@ -98,7 +98,7 @@ Operate a configured testnet
    --deploy-if-newer                  - Only deploy if newer software is
                                         available (requires -t or -T)
 
-   --cluster-type development|devnet|testnet|mainnet-beta
+   --cluster-type development|spark|testnet|mainnet-beta
                                       - Specify whether or not to launch the cluster in "development" mode with all features enabled at epoch 0,
                                         or various other live clusters' feature set (default: development)
    --slots-per-epoch SLOTS
@@ -824,7 +824,7 @@ while [[ -n $1 ]]; do
       shift 2
     elif [[ $1 = --cluster-type ]]; then
       case "$2" in
-        development|devnet|testnet|mainnet-beta)
+        development|spark|testnet|mainnet-beta)
           ;;
         *)
           echo "Unexpected cluster type: \"$2\""

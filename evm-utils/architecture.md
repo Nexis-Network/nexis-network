@@ -58,7 +58,7 @@ So our design was to implement storage, for big state, with versioning support. 
 This rpc calls need to get state from past, so support multiple version of storage is also required. 
 
 ### Abstract view of Trie db
-As state provider, we adopt https://github.com/velas/triedb - this is modified merkle-patricia tree from sputnikvm https://github.com/ETCDEVTeam/etcommon-rs/tree/master/trie with small code cleanups, and refactoring to make it work only with rocksdb (persistent storage). See https://eth.wiki/en/fundamentals/patricia-tree as reference for implementation, and https://medium.com/@chiqing/merkle-patricia-trie-explained-ae3ac6a7e123 as explanation how it works.
+As state provider, we adopt https://github.com/nexis-network/triedb - this is modified merkle-patricia tree from sputnikvm https://github.com/ETCDEVTeam/etcommon-rs/tree/master/trie with small code cleanups, and refactoring to make it work only with rocksdb (persistent storage). See https://eth.wiki/en/fundamentals/patricia-tree as reference for implementation, and https://medium.com/@chiqing/merkle-patricia-trie-explained-ae3ac6a7e123 as explanation how it works.
 
 In shorts, we work with this as with k-v database:
 where k - is an evm account address (20 bytes long),

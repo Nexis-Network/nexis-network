@@ -54,12 +54,12 @@ use self::evm_genesis::{AccountPair, EvmAccountDumpExtractor};
 pub enum ClusterType {
     Testnet,
     MainnetBeta,
-    Devnet,
+    Spark,
     Development,
 }
 
 impl ClusterType {
-    pub const STRINGS: [&'static str; 4] = ["development", "devnet", "testnet", "mainnet-beta"];
+    pub const STRINGS: [&'static str; 4] = ["development", "spark", "testnet", "mainnet-beta"];
 }
 
 impl FromStr for ClusterType {
@@ -68,7 +68,7 @@ impl FromStr for ClusterType {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
             "development" => Ok(ClusterType::Development),
-            "devnet" => Ok(ClusterType::Devnet),
+            "spark" => Ok(ClusterType::Spark),
             "testnet" => Ok(ClusterType::Testnet),
             "mainnet-beta" => Ok(ClusterType::MainnetBeta),
             _ => Err(format!("{} is unrecognized for cluster type", s)),
@@ -291,7 +291,7 @@ impl GenesisConfig {
         } else {
             warn!("Generating genesis with empty evm state");
             match self.cluster_type {
-                ClusterType::Development | ClusterType::Devnet => (),
+                ClusterType::Development | ClusterType::Spark => (),
                 cluster_type => {
                     return Err(std::io::Error::new(
                         std::io::ErrorKind::Other,

@@ -215,7 +215,7 @@ pub fn normalize_to_url_if_moniker<T: AsRef<str>>(url_or_moniker: T) -> String {
     match url_or_moniker.as_ref() {
         "m" | "mainnet" => "https://api.mainnet.nexis.network",
         "t" | "testnet" => "https://api.testnet.nexis.network",
-        "d" | "devnet" => "https://api.devnet.nexis.network",
+        "d" | "spark" => "https://api.spark.nexis.network",
         "l" | "localhost" => "http://localhost:8899",
         url => url,
     }

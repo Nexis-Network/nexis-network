@@ -175,20 +175,20 @@ pub static ETH_TO_NZT_ADDR: Lazy<H160> = Lazy::new(|| {
     .expect("Serialization of static data should be determenistic and never fail.")
 });
 
-type EthToVlxImp = PromiseFunc<
-    fn(Pubkey, NativeContext) -> Result<(PrecompileOutput, u64, Vec<EthToVlxResult>)>,
-    fn(AccountStructure, EthToVlxResult) -> Result<()>,
+type EthToNztImp = PromiseFunc<
+    fn(Pubkey, NativeContext) -> Result<(PrecompileOutput, u64, Vec<EthToNztResult>)>,
+    fn(AccountStructure, EthToNztResult) -> Result<()>,
     Pubkey,
-    EthToVlxResult,
+    EthToNztResult,
 >;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct EthToVlxResult {
+pub struct EthToNztResult {
     pubkey: Pubkey,
     amount: u64,
 }
 
-pub static ETH_TO_NZT_CODE: Lazy<NativeContract<EthToVlxImp, Pubkey>> = Lazy::new(|| {
+pub static ETH_TO_NZT_CODE: Lazy<NativeContract<EthToNztImp, Pubkey>> = Lazy::new(|| {
     #[allow(deprecated)]
     let abi = Function {
         name: String::from("transferToNative"),
@@ -206,7 +206,7 @@ pub static ETH_TO_NZT_CODE: Lazy<NativeContract<EthToVlxImp, Pubkey>> = Lazy::ne
     fn implementation(
         pubkey: Pubkey,
         cx: NativeContext,
-    ) -> Result<(PrecompileOutput, u64, Vec<EthToVlxResult>)> {
+    ) -> Result<(PrecompileOutput, u64, Vec<EthToNztResult>)> {
         // EVM should ensure that user has enough tokens, before calling this precompile.
 
         log::trace!("Precompile ETH_TO_NZT");
@@ -262,7 +262,7 @@ pub static ETH_TO_NZT_CODE: Lazy<NativeContract<EthToVlxImp, Pubkey>> = Lazy::ne
             0,
             vec![
                 // Vec::new(), // Only support empty topics for now
-                EthToVlxResult {
+                EthToNztResult {
                     pubkey,
                     amount: lamports,
                 },
@@ -270,7 +270,7 @@ pub static ETH_TO_NZT_CODE: Lazy<NativeContract<EthToVlxImp, Pubkey>> = Lazy::ne
         ))
     }
 
-    fn handle_promise(accounts: AccountStructure, promise: EthToVlxResult) -> Result<()> {
+    fn handle_promise(accounts: AccountStructure, promise: EthToNztResult) -> Result<()> {
         log::trace!("Promise handle ETH_TO_NZT {:?}", promise);
         let lamports = promise.amount;
         let pubkey = promise.pubkey;

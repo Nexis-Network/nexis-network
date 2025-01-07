@@ -5,7 +5,7 @@ MIN_VALIDATOR_STAKE=10001 # 10k min stake + rent exempt
 MIN_RENT_FEE=100 # Some value that should be enough for fee
 DATADIR=/data/solana
 NODE_TYPE=$1  #validator/bootstrap
-NETWORK=${NETWORK:-"devnet"} #devnet/testnet/mainnet-beta
+NETWORK=${NETWORK:-"spark"} #spark/testnet/mainnet-beta
 
 echo "Starting entrypoint for network: $NETWORK"
 
@@ -37,8 +37,8 @@ run_solana_validator() {
     set -e
     
     case "$NETWORK" in
-        # airdrop on devnet only
-        "devnet" | "development")
+        # airdrop on spark only
+        "spark" | "development")
             if ! vote_account_exist; then
                 nexis-keygen new --no-passphrase -so $datadir/identity.json #try to generate identity
                 nexis-keygen new --no-passphrase -so $datadir/vote-account.json #try to generate vote account
@@ -98,8 +98,8 @@ run_evm_bridge() {
     declare listen_addr=$3
     CHAIN_ID=""
     case "$NETWORK" in
-        # airdrop on devnet only
-        "devnet" | "development")
+        # airdrop on spark only
+        "spark" | "development")
             CHAIN_ID=57005
         ;;
         "mainnet")
@@ -158,8 +158,8 @@ generate_first_node() {
     fetch_program feature-proposal 1.0.0 Feat1YXHhH6t1juaWF74WLcfv4XoNocjXA6sPWHNgAse BPFLoader2111111111111111111111111111111111
     FAUCET_LAMPORTS=0
     case "$NETWORK" in
-        # airdrop on devnet only
-        "devnet" | "development")
+        # airdrop on spark only
+        "spark" | "development")
             FAUCET_LAMPORTS=500000000000000000
         ;;
         "mainnet" | "testnet")
@@ -174,7 +174,7 @@ case "${NODE_TYPE}" in
         
         # generate genesis and identity only on first node
         case "$NETWORK" in
-            "devnet" | "development")
+            "spark" | "development")
                 if  [ ! -f $DATADIR/identity.json ]; then
                     generate_first_node
                 fi

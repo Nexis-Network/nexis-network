@@ -7202,7 +7202,7 @@ impl Bank {
     fn reconfigure_token2_native_mint(&mut self, reconfigure_token2_native_mint_nexis: bool) {
         let reconfigure_token2_native_mint_old = match self.cluster_type() {
             ClusterType::Development => true,
-            ClusterType::Devnet => true,
+            ClusterType::Spark => true,
             ClusterType::Testnet => self.epoch() == 93,
             ClusterType::MainnetBeta => self.epoch() == 75,
         };
@@ -7247,8 +7247,8 @@ impl Bank {
     fn ensure_no_storage_rewards_pool(&mut self) {
         let purge_window_epoch = match self.cluster_type() {
             ClusterType::Development => false,
-            // never do this for devnet; we're pristine here. :)
-            ClusterType::Devnet => false,
+            // never do this for spark; we're pristine here. :)
+            ClusterType::Spark => false,
             // tds is not exist in nexis so dont do this
             ClusterType::Testnet => false,
             // never do this for stable; we're pristine here. :)
@@ -16520,7 +16520,7 @@ pub(crate) mod tests {
     }
 
     #[test]
-    fn test_get_inflation_start_slot_devnet_testnet() {
+    fn test_get_inflation_start_slot_spark_testnet() {
         let GenesisConfigInfo {
             mut genesis_config, ..
         } = create_genesis_config_with_leader(42, &solana_sdk::pubkey::new_rand(), 42);
@@ -16530,7 +16530,7 @@ pub(crate) mod tests {
             .unwrap();
         genesis_config
             .accounts
-            .remove(&feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id())
+            .remove(&feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id())
             .unwrap();
         for pair in feature_set::FULL_INFLATION_FEATURE_PAIRS.iter() {
             genesis_config.accounts.remove(&pair.vote_id);
@@ -16562,10 +16562,10 @@ pub(crate) mod tests {
         bank = new_from_parent(&Arc::new(bank));
         assert_eq!(bank.slot(), 3);
 
-        // Request `full_inflation::devnet_and_testnet` activation,
+        // Request `full_inflation::spark_and_testnet` activation,
         // which takes priority over pico_inflation
         bank.store_account(
-            &feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id(),
+            &feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id(),
             &feature::create_account(
                 &Feature {
                     activated_at: Some(2),
@@ -16611,7 +16611,7 @@ pub(crate) mod tests {
             .unwrap();
         genesis_config
             .accounts
-            .remove(&feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id())
+            .remove(&feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id())
             .unwrap();
         for pair in feature_set::FULL_INFLATION_FEATURE_PAIRS.iter() {
             genesis_config.accounts.remove(&pair.vote_id);
@@ -16646,7 +16646,7 @@ pub(crate) mod tests {
         // Request `full_inflation::mainnet::certusone` activation,
         // which takes priority over pico_inflation
         bank.store_account(
-            &feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id(),
+            &feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id(),
             &feature::create_account(
                 &Feature {
                     activated_at: Some(2),
@@ -16661,10 +16661,10 @@ pub(crate) mod tests {
         bank = new_from_parent(&Arc::new(bank));
         assert_eq!(bank.slot(), 4);
 
-        // Request `full_inflation::devnet_and_testnet` activation,
+        // Request `full_inflation::spark_and_testnet` activation,
         // which should have no effect on `get_inflation_start_slot`
         bank.store_account(
-            &feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id(),
+            &feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id(),
             &feature::create_account(
                 &Feature {
                     activated_at: Some(bank.slot()),
@@ -16689,7 +16689,7 @@ pub(crate) mod tests {
             .unwrap();
         genesis_config
             .accounts
-            .remove(&feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id())
+            .remove(&feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id())
             .unwrap();
         for pair in feature_set::FULL_INFLATION_FEATURE_PAIRS.iter() {
             genesis_config.accounts.remove(&pair.vote_id);
@@ -16721,10 +16721,10 @@ pub(crate) mod tests {
         }
         assert_eq!(bank.get_inflation_num_slots(), 2 * slots_per_epoch);
 
-        // Activate full_inflation::devnet_and_testnet
+        // Activate full_inflation::spark_and_testnet
         let full_inflation_activation_slot = bank.slot();
         bank.store_account(
-            &feature_set::full_inflation::devnet_and_testnet_nexis_mainnet::id(),
+            &feature_set::full_inflation::spark_and_testnet_nexis_mainnet::id(),
             &feature::create_account(
                 &Feature {
                     activated_at: Some(full_inflation_activation_slot),

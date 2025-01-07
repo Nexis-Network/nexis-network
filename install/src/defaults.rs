@@ -1,4 +1,4 @@
-pub const JSON_RPC_URL: &str = "http://api.devnet.nexis.network";
+pub const JSON_RPC_URL: &str = "http://api.spark.nexis.network";
 
 /// Returns last 30 releases from GitHub Release REST API, could be
 /// increased up to 100 (?per_page=100). If we need a list with more
