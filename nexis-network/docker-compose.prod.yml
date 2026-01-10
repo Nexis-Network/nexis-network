@@ -1,0 +1,95 @@
+version: "3.9"
+
+services:
+  # ---------------------------------------------------------------------------
+  # Layer 1: Reverse Proxy (Gateway)
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: nexis_gateway
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - console
+      - trust-center
+
+  # ---------------------------------------------------------------------------
+  # Layer 2: Blockchain Node
+  # ---------------------------------------------------------------------------
+  blockchain:
+    image: ghcr.io/nexis-network/nexis-ai-chain:latest
+    container_name: nexis_chain
+    restart: unless-stopped
+    ports:
+      - "9944:9944"   # WebSocket RPC
+      - "30333:30333" # P2P
+    volumes:
+      - blockchain_data:/root/data
+    command:
+      - "./startup.sh"
+      - "--base-path"
+      - "/root/data"
+      - "--rpc-external"
+      - "--rpc-cors"
+      - "all"
+
+  # ---------------------------------------------------------------------------
+  # Layer 3: Application Services
+  # ---------------------------------------------------------------------------
+  console:
+    build: 
+      context: ./nexis-ai-cloud-console
+      dockerfile: Dockerfile
+    container_name: nexis_console
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://nexis:securepassword@postgres:5432/nexis_console
+      - NEXTAUTH_URL=https://console.nexis.network
+      - NEXTAUTH_SECRET=changeme_production_secret
+    depends_on:
+      - postgres
+
+  trust-center:
+    build:
+      context: ./nexis-trust-center
+      dockerfile: Dockerfile
+    container_name: nexis_trust_center
+    restart: always
+    # Since it's a monorepo, it starts the server on 3000
+    environment:
+      - DATABASE_URL=postgresql://nexis:securepassword@postgres:5432/nexis_trust
+    depends_on:
+      - postgres
+      - redis
+
+  # ---------------------------------------------------------------------------
+  # Layer 4: Persistence (Databases)
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: nexis_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=nexis
+      - POSTGRES_PASSWORD=change_this_password_immediately
+      - POSTGRES_DB=nexis_console
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    container_name: nexis_redis
+    restart: always
+    volumes:
+      - redis_data:/data
+
+volumes:
+  blockchain_data:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,42 @@
+# Node
+node_modules
+node_modules/
+**/node_modules
+**/node_modules/
+.next
+.next/
+**/.next
+**/.next/
+nexis-ai-cloud-console/.next
+nexis-ai-cloud-console/node_modules
+nexis-ai-cloud/node_modules
+nexis-trust-center/node_modules
+
+# Rust
+target
+target/
+**/target
+**/target/
+nexis-ai-chain/target
+
+# Other
+nexis-ai-runtime/
+.git/
+.DS_Store
+*.log
+output/
+test_data/
+coverage/
+dist/
+build/
+
+# Ignored Services/Docs
+docs/
+nexis-apps/
+nexis-ai-cloud/
+Nex-T1-Enterprise/
+Nex-MCP/
+hyperliquid-mcp/
+moralis-mcp-server/
+uniswap-trader-mcp/
+nex-t1-documentation-mintlify/
