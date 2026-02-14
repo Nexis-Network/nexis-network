@@ -1,0 +1,4 @@
+[submodule "packages/nexis-agent"]
+	path = packages/nexis-agent
+	url = https://github.com/browseros-ai/BrowserOS-agent.git
+	branch = main
