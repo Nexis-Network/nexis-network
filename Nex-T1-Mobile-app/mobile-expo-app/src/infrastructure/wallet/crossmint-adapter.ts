@@ -42,6 +42,14 @@ import { JupiterClient } from './jupiter-client';
 // Chain mapping constants
 // ---------------------------------------------------------------------------
 
+/** Domain ChainType → Crossmint SDK chain identifier. */
+export const CHAIN_MAP: Record<ChainType, string> = {
+  evm: 'base',
+  solana: 'solana',
+  stellar: 'stellar',
+  sui: 'sui',
+};
+
 const CHAIN_LABELS: Record<ChainType, string> = {
   evm: 'Base',
   solana: 'Solana',

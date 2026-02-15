@@ -215,7 +215,7 @@ export function AuthProviderGrid() {
       </View>
 
       {/* Icon grid */}
-      <View className="flex-row flex-wrap justify-center" style={{ gap: 12 }}>
+      <View className="flex-row flex-wrap justify-center" style={{ gap: 10 }}>
         {PROVIDERS.map((provider) => (
           <AuthProviderButton
             key={provider}

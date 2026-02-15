@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Pressable, ActivityIndicator, type ViewStyle } from 'react-native';
+import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 
@@ -18,6 +19,16 @@ const providerIcons = {
 } as const;
 
 export type AuthProviderType = keyof typeof providerIcons;
+
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+
+const BUTTON_SIZE = 48;
+const ICON_SIZE = 22;
+const BORDER_RADIUS = 14;
+const BORDER_COLOR = 'rgba(196, 196, 196, 0.08)';
+const BG_COLOR = 'rgba(15, 15, 16, 0.7)';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -58,26 +69,37 @@ export function AuthProviderButton({
       accessibilityLabel={`Sign in with ${provider}`}
       accessibilityRole="button"
       style={({ pressed }: { pressed: boolean }): ViewStyle => ({
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        backgroundColor: '#1a1a1c',
+        width: BUTTON_SIZE,
+        height: BUTTON_SIZE,
+        borderRadius: BORDER_RADIUS,
         borderWidth: 1,
-        borderColor: pressed && !isDisabled ? '#3a3a3c' : '#2a2a2c',
-        alignItems: 'center',
-        justifyContent: 'center',
+        borderColor: pressed && !isDisabled
+          ? 'rgba(196, 196, 196, 0.16)'
+          : BORDER_COLOR,
+        overflow: 'hidden',
         opacity: isDisabled ? 0.5 : 1,
       })}
     >
-      {loading ? (
-        <ActivityIndicator size="small" color="#FFFFFF" />
-      ) : (
-        <Image
-          source={providerIcons[provider]}
-          style={{ width: 24, height: 24 }}
-          contentFit="contain"
-        />
-      )}
+      <BlurView
+        intensity={40}
+        tint="dark"
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: BG_COLOR,
+        }}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        ) : (
+          <Image
+            source={providerIcons[provider]}
+            style={{ width: ICON_SIZE, height: ICON_SIZE }}
+            contentFit="contain"
+          />
+        )}
+      </BlurView>
     </Pressable>
   );
 }

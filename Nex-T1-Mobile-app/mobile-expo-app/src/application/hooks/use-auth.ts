@@ -13,7 +13,7 @@
 
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import type { Session, User } from '@domain/auth/entities/user';
+import type { Session, User, OAuthProvider } from '@domain/auth/entities/user';
 import type { DomainError } from '@domain/common/errors/domain-error';
 import type { Result } from '@domain/common/types';
 import type { IAuthRepository } from '@domain/auth/repositories/auth-repository';
@@ -27,7 +27,6 @@ import { SignUpUseCase } from '@application/auth/sign-up.use-case';
 import { WalletAuthUseCase } from '@application/auth/wallet-auth.use-case';
 import { SignOutUseCase } from '@application/auth/sign-out.use-case';
 import { OAuthSignInUseCase } from '@application/auth/oauth-sign-in.use-case';
-import type { OAuthProvider } from '@domain/auth/entities/user';
 
 // ---------------------------------------------------------------------------
 // Session refresh constants
