@@ -3,24 +3,49 @@ import { View, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import Animated, { FadeIn, FadeInUp } from 'react-native-reanimated';
-import { Wallet, Globe, Sun } from 'lucide-react-native';
 
 import { Text } from '@presentation/components/ui/text';
 import { Button } from '@presentation/components/ui/button';
 import { WalletCreationCard } from '@presentation/components/wallet/onboarding/wallet-creation-card';
 import { useCrossmintWallet } from '@application/hooks/use-crossmint-wallet';
 import type { ChainType } from '@domain/wallet/entities/wallet';
+import { getChainById, getSolanaChain, getStellarChain } from '@config/chains';
 
-const CHAINS: ReadonlyArray<{ chain: ChainType; name: string; icon: React.ReactNode }> = [
-  { chain: 'evm', name: 'Ethereum (Base)', icon: <Wallet size={24} color="#627EEA" /> },
-  { chain: 'solana', name: 'Solana', icon: <Globe size={24} color="#9945FF" /> },
-  { chain: 'stellar', name: 'Stellar', icon: <Sun size={24} color="#00B4E6" /> },
+const BASE_CHAIN = getChainById(8453);
+const SOLANA_CHAIN = getSolanaChain();
+const STELLAR_CHAIN = getStellarChain();
+
+const CHAINS: ReadonlyArray<{
+  chain: ChainType;
+  name: string;
+  chainId?: number | string | undefined;
+  iconName?: string | undefined;
+}> = [
+  {
+    chain: 'evm',
+    name: 'Base (EVM)',
+    chainId: typeof BASE_CHAIN?.id === 'number' ? BASE_CHAIN.id : 8453,
+    iconName: BASE_CHAIN?.iconName ?? 'base',
+  },
+  {
+    chain: 'solana',
+    name: SOLANA_CHAIN?.name ?? 'Solana',
+    chainId: SOLANA_CHAIN?.id,
+    iconName: SOLANA_CHAIN?.iconName ?? 'solana',
+  },
+  {
+    chain: 'stellar',
+    name: STELLAR_CHAIN?.name ?? 'Stellar',
+    chainId: STELLAR_CHAIN?.id,
+    iconName: STELLAR_CHAIN?.iconName ?? 'stellar',
+  },
 ];
 
 export default function WalletSetupScreen() {
   const {
     createAllWallets,
     retryChain,
+    isReady,
     isCreating,
     walletsCreated,
     failedChains,
@@ -31,11 +56,11 @@ export default function WalletSetupScreen() {
 
   // Auto-start wallet creation on mount
   useEffect(() => {
-    if (!hasStarted.current) {
+    if (!hasStarted.current && isReady) {
       hasStarted.current = true;
       void createAllWallets();
     }
-  }, [createAllWallets]);
+  }, [createAllWallets, isReady]);
 
   const allComplete = walletsCreated.length === CHAINS.length;
   const hasErrors = failedChains.length > 0;
@@ -73,12 +98,18 @@ export default function WalletSetupScreen() {
             <WalletCreationCard
               key={item.chain}
               chainName={item.name}
-              chainIcon={item.icon}
+              chainType={item.chain}
+              chainId={item.chainId}
+              chainIconName={item.iconName}
               status={getStatus(item.chain)}
               index={index}
-              {...(failedChains.includes(item.chain)
-                ? { onRetry: () => void retryChain(item.chain) }
-                : {})}
+              onRetry={
+                failedChains.includes(item.chain)
+                  ? () => {
+                      void retryChain(item.chain);
+                    }
+                  : undefined
+              }
             />
           ))}
         </View>

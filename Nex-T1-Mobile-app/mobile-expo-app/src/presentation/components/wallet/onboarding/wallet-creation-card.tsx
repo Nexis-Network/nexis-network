@@ -2,15 +2,19 @@ import { View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { Text } from '@presentation/components/ui/text';
+import type { ChainType } from '@domain/wallet/entities/wallet';
+import { ChainIcon } from '../primitives/chain-icon';
 
 type CreationStatus = 'pending' | 'creating' | 'success' | 'error';
 
 interface WalletCreationCardProps {
   readonly chainName: string;
-  readonly chainIcon: React.ReactNode;
+  readonly chainType?: ChainType | undefined;
+  readonly chainId?: number | string | undefined;
+  readonly chainIconName?: string | undefined;
   readonly status: CreationStatus;
   readonly index: number;
-  readonly onRetry?: () => void;
+  readonly onRetry?: (() => void) | undefined;
 }
 
 const STATUS_COLORS: Record<CreationStatus, string> = {
@@ -29,7 +33,9 @@ const STATUS_TEXT: Record<CreationStatus, string> = {
 
 export function WalletCreationCard({
   chainName,
-  chainIcon,
+  chainType,
+  chainId,
+  chainIconName,
   status,
   index,
   onRetry,
@@ -40,7 +46,12 @@ export function WalletCreationCard({
         className={`flex-row items-center p-4 rounded-2xl mb-3 border border-border ${STATUS_COLORS[status]}`}
       >
         <View className="w-12 h-12 rounded-xl bg-surface items-center justify-center mr-4">
-          {chainIcon}
+          <ChainIcon
+            chainType={chainType}
+            chainId={chainId}
+            iconName={chainIconName}
+            size={24}
+          />
         </View>
         <View className="flex-1">
           <Text variant="body" className="font-semibold text-white">

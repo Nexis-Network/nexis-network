@@ -18,8 +18,10 @@ import type {
   TransactionStatus,
 } from '@domain/wallet/entities/wallet';
 import type { DomainError } from '@domain/common/errors/domain-error';
+import { ValidationError } from '@domain/common/errors/domain-error';
 import type { Result, Pagination, PaginatedResult } from '@domain/common/types';
-import { success, createUUID, createTimestamp } from '@domain/common/types';
+import { failure, success, createUUID, createTimestamp } from '@domain/common/types';
+import { isAddressCompatibleWithChainType } from '@shared/utils/wallet-address';
 import { getMobileApiClient } from './mobile-api-client';
 
 // ---------------------------------------------------------------------------
@@ -65,6 +67,10 @@ interface ApiPaginatedResponse<T> {
   total_pages: number;
   has_next_page: boolean;
   has_previous_page: boolean;
+}
+
+function isSupportedWalletChainType(value: string): value is Wallet['chainType'] {
+  return value === 'evm' || value === 'solana' || value === 'sui' || value === 'stellar';
 }
 
 // ---------------------------------------------------------------------------
@@ -197,9 +203,26 @@ export class WalletApi implements IWalletRepository {
     address: string,
     chainType: string,
   ): Promise<Result<Wallet, DomainError>> {
+    const normalizedAddress = address.trim();
+    const normalizedChainType = chainType.trim().toLowerCase();
+
+    if (!isSupportedWalletChainType(normalizedChainType)) {
+      return failure(
+        new ValidationError(`Unsupported chain type: ${chainType}`, 'chainType'),
+      );
+    }
+    if (!isAddressCompatibleWithChainType(normalizedAddress, normalizedChainType)) {
+      return failure(
+        new ValidationError(
+          `Address does not match selected chain type (${normalizedChainType})`,
+          'address',
+        ),
+      );
+    }
+
     const result = await this.api.post<ApiWallet>('/wallets/provision', {
-      address,
-      chain_type: chainType,
+      address: normalizedAddress,
+      chain_type: normalizedChainType,
     });
 
     if (!result.ok) return result;
