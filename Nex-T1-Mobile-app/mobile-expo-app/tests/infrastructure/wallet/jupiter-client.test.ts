@@ -136,7 +136,7 @@ describe('JupiterClient', () => {
         '@infrastructure/wallet/jupiter-client'
       );
       const client = new JupiterClient();
-      const quoteResponse = {
+      const rawRoute = {
         inputMint: 'SOL',
         outputMint: 'USDC',
         inAmount: '1000',
@@ -144,9 +144,17 @@ describe('JupiterClient', () => {
         priceImpactPct: '0.01',
         routePlan: [],
       };
+      const quote = {
+        inputMint: 'SOL',
+        outputMint: 'USDC',
+        inputAmount: '1000',
+        outputAmount: '35',
+        priceImpactPct: 0.01,
+        routeData: rawRoute,
+      };
 
       const result = await client.buildSwapTransaction(
-        quoteResponse,
+        quote,
         '7EqQdEULxWcraVx3mXKFjc84LhCkMGZCkRuDpvcMwJeK',
       );
 
@@ -162,7 +170,7 @@ describe('JupiterClient', () => {
       expect(options.method).toBe('POST');
       expect(options.headers).toEqual({ 'Content-Type': 'application/json' });
       const body = JSON.parse(options.body as string);
-      expect(body.quoteResponse).toEqual(quoteResponse);
+      expect(body.quoteResponse).toEqual(rawRoute);
       expect(body.userPublicKey).toBe(
         '7EqQdEULxWcraVx3mXKFjc84LhCkMGZCkRuDpvcMwJeK',
       );
@@ -176,7 +184,7 @@ describe('JupiterClient', () => {
       );
       const client = new JupiterClient();
       const result = await client.buildSwapTransaction(
-        { some: 'quote' },
+        { inputMint: 'A', outputMint: 'B', inputAmount: '1', outputAmount: '1', priceImpactPct: 0, routeData: {} },
         'pubkey',
       );
 
@@ -194,7 +202,7 @@ describe('JupiterClient', () => {
       );
       const client = new JupiterClient();
       const result = await client.buildSwapTransaction(
-        { some: 'quote' },
+        { inputMint: 'A', outputMint: 'B', inputAmount: '1', outputAmount: '1', priceImpactPct: 0, routeData: {} },
         'pubkey',
       );
 

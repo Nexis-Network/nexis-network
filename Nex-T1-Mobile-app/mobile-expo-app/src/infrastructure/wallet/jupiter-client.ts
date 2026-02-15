@@ -100,7 +100,7 @@ export class JupiterClient {
    * @returns The base64-encoded transaction string.
    */
   async buildSwapTransaction(
-    quoteResponse: unknown,
+    quote: SwapQuote,
     userPublicKey: string,
   ): Promise<Result<string, DomainError>> {
     try {
@@ -108,7 +108,7 @@ export class JupiterClient {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          quoteResponse,
+          quoteResponse: quote.routeData,
           userPublicKey,
         }),
       });
