@@ -66,7 +66,7 @@ describe('JupiterClient', () => {
       }
 
       // Verify fetch was called with the correct URL
-      const fetchCall = vi.mocked(global.fetch).mock.calls[0];
+      const fetchCall = vi.mocked(global.fetch).mock.calls[0]!;
       const url = new URL(fetchCall[0] as string);
       expect(url.origin + url.pathname).toBe(`${JUPITER_BASE}/quote`);
       expect(url.searchParams.get('inputMint')).toBe(
@@ -156,9 +156,9 @@ describe('JupiterClient', () => {
       }
 
       // Verify POST request details
-      const fetchCall = vi.mocked(global.fetch).mock.calls[0];
+      const fetchCall = vi.mocked(global.fetch).mock.calls[0]!;
       expect(fetchCall[0]).toBe(`${JUPITER_BASE}/swap`);
-      const options = fetchCall[1] as RequestInit;
+      const options = fetchCall[1]! as RequestInit;
       expect(options.method).toBe('POST');
       expect(options.headers).toEqual({ 'Content-Type': 'application/json' });
       const body = JSON.parse(options.body as string);

@@ -24,7 +24,7 @@
  */
 
 import type { Result } from '@domain/common/types';
-import { success, failure, createUUID } from '@domain/common/types';
+import { failure, createUUID } from '@domain/common/types';
 import { DomainError } from '@domain/common/errors/domain-error';
 import type {
   ChainType,
