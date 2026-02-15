@@ -104,13 +104,19 @@ async function apiRequest<T>(
     getEnv().MOBILE_API_BASE_URL ?? getEnv().API_BASE_URL;
 
   try {
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Accept', 'application/json');
+    if (options.headers) {
+      const extra = new Headers(options.headers);
+      extra.forEach((value: string, key: string) => {
+        headers.set(key, value);
+      });
+    }
+
     const response = await fetch(`${baseUrl}${path}`, {
       ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        ...options.headers,
-      },
+      headers,
     });
 
     if (!response.ok) {
@@ -335,7 +341,7 @@ export async function revokeSessionKey(
   safeAddress: string,
   keyId: string,
 ): Promise<Result<void, WalletError>> {
-  const result = await apiRequest<void>(
+  const result = await apiRequest(
     `/wallets/${encodeURIComponent(safeAddress)}/session-keys/${encodeURIComponent(keyId)}`,
     { method: 'DELETE' },
   );
