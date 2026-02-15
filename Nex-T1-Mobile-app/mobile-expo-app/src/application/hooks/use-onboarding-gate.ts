@@ -10,7 +10,7 @@
  * not a raw string. The Result must be unwrapped before use.
  */
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 
 import type { ISecureStorage } from '@domain/common/ports/secure-storage';

@@ -14,6 +14,10 @@
 import { useCallback } from 'react';
 
 import { useWallet as useCrossmintSdkWallet } from '@crossmint/client-sdk-react-native-ui';
+import type { Chain, Wallet as CrossmintSdkWalletType } from '@crossmint/wallets-sdk';
+
+/** Shorthand for the Crossmint SDK wallet resolved from getOrCreateWallet. */
+type CrossmintSdkWallet = CrossmintSdkWalletType<Chain>;
 
 import type { ChainType } from '@domain/wallet/entities/wallet';
 import {
@@ -73,14 +77,24 @@ export function useCrossmintWallet(): UseCrossmintWalletReturn {
   const createChainWallet = useCallback(
     async (chainType: ChainType): Promise<void> => {
       try {
-        const cmWallet = await getOrCreateWallet({
-          chain: CHAIN_MAP[chainType],
+        // The CrossmintWalletProvider injects the signer configuration at
+        // the provider level. We cast the args because the provider-level
+        // signer satisfies the SDK's `WalletArgsFor<C>` requirement at
+        // runtime, but TypeScript cannot infer this from the hook context.
+        const cmWallet = await (getOrCreateWallet as (
+          props: { chain: Chain },
+        ) => Promise<CrossmintSdkWallet | undefined>)({
+          chain: CHAIN_MAP[chainType] as Chain,
         });
+
+        if (cmWallet == null) {
+          throw new Error(`Crossmint returned no wallet for chain: ${chainType}`);
+        }
 
         const domainWallet = mapCrossmintWalletToDomain({
           address: cmWallet.address,
           chain: chainType,
-          walletId: cmWallet.id ?? cmWallet.address,
+          walletId: cmWallet.address,
         });
 
         addWallet(domainWallet);
