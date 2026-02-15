@@ -52,12 +52,14 @@ describe('CrossmintWalletServiceAdapter', () => {
         '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0',
       );
       expect(wallet.chainType).toBe('evm');
+      expect(wallet.chainId).toBe(8453); // Base chain
       expect(wallet.walletProvider).toBe('crossmint');
       expect(wallet.deploymentStatus).toBe('running');
-      expect(wallet.isPrimary).toBe(false);
+      expect(wallet.isPrimary).toBe(true); // EVM wallets are primary
       expect(wallet.safeVersion).toBeUndefined();
       expect(wallet.crossmintWalletId).toBe('cm_wallet_123');
       expect(wallet.id).toBeDefined();
+      expect(wallet.label).toContain('Base');
     });
 
     it('should map a Crossmint Solana wallet response to a domain Wallet', async () => {
@@ -75,8 +77,11 @@ describe('CrossmintWalletServiceAdapter', () => {
         '7EqQdEULxWcraVx3mXKFjc84LhCkMGZCkRuDpvcMwJeK',
       );
       expect(wallet.chainType).toBe('solana');
+      expect(wallet.chainId).toBeUndefined(); // Solana has no numeric chainId
       expect(wallet.walletProvider).toBe('crossmint');
+      expect(wallet.isPrimary).toBe(false); // Only EVM wallets are primary
       expect(wallet.crossmintWalletId).toBe('cm_wallet_456');
+      expect(wallet.label).toContain('Solana');
     });
 
     it('should generate a deterministic UUID from the address', async () => {
@@ -98,7 +103,7 @@ describe('CrossmintWalletServiceAdapter', () => {
       expect(wallet1.id).toBe(wallet2.id);
     });
 
-    it('should generate a label from the address', async () => {
+    it('should generate a label with chain name and truncated address', async () => {
       const { mapCrossmintWalletToDomain } = await import(
         '@infrastructure/wallet/crossmint-adapter'
       );
@@ -108,6 +113,7 @@ describe('CrossmintWalletServiceAdapter', () => {
         chain: 'evm',
       });
 
+      expect(wallet.label).toContain('Base');
       expect(wallet.label).toContain('0x742d');
       expect(wallet.label).toContain('bEb0');
     });

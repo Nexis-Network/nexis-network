@@ -39,6 +39,21 @@ import type {
 import { JupiterClient } from './jupiter-client';
 
 // ---------------------------------------------------------------------------
+// Chain mapping constants
+// ---------------------------------------------------------------------------
+
+const CHAIN_LABELS: Record<ChainType, string> = {
+  evm: 'Base',
+  solana: 'Solana',
+  stellar: 'Stellar',
+  sui: 'Sui',
+};
+
+const CHAIN_IDS: Partial<Record<ChainType, number>> = {
+  evm: 8453, // Base chain
+};
+
+// ---------------------------------------------------------------------------
 // Crossmint response mapping
 // ---------------------------------------------------------------------------
 
@@ -53,17 +68,22 @@ export interface CrossmintWalletResponse {
  *
  * This is a pure function so it can be used by React hooks that directly
  * interact with the Crossmint SDK without going through the adapter class.
+ *
+ * Uses deterministic UUIDs so reconnecting the same wallet address always
+ * yields the same domain entity id (prevents duplication).
  */
 export function mapCrossmintWalletToDomain(
   response: CrossmintWalletResponse,
 ): Wallet {
   const addr = response.address;
+  const chain = response.chain;
   return {
     id: createUUID(deterministicUUID(addr)),
     address: addr,
-    chainType: response.chain,
-    label: `Crossmint ${addr.slice(0, 6)}...${addr.slice(-4)}`,
-    isPrimary: false,
+    chainType: chain,
+    chainId: CHAIN_IDS[chain],
+    label: `${CHAIN_LABELS[chain] ?? chain} • ${addr.slice(0, 6)}...${addr.slice(-4)}`,
+    isPrimary: chain === 'evm',
     safeVersion: undefined,
     deploymentStatus: 'running',
     walletProvider: 'crossmint',
