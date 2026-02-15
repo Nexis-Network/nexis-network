@@ -96,15 +96,10 @@ class RootErrorBoundary extends React.Component<
 // ---------------------------------------------------------------------------
 
 export default function RootLayout() {
-  // Load custom fonts here. System fonts (San Francisco / Roboto) are used
-  // by default until Inter font files are added to ./assets/fonts/.
-  //
-  // To enable custom fonts, add .ttf files and uncomment:
-  //   'Inter-Regular': require('../assets/fonts/Inter-Regular.ttf'),
-  //   'Inter-Medium': require('../assets/fonts/Inter-Medium.ttf'),
-  //   'Inter-SemiBold': require('../assets/fonts/Inter-SemiBold.ttf'),
-  //   'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
-  const [fontsLoaded, fontError] = useFonts({});
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const [fontsLoaded, fontError] = useFonts({
+    'FunnelDisplay-Medium': require('../assets/fonts/FunnelDisplay-Medium.ttf'),
+  });
 
   const onLayoutReady = useCallback(async () => {
     if (fontsLoaded || fontError) {
@@ -122,7 +117,7 @@ export default function RootLayout() {
 
   return (
     <RootErrorBoundary>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={{ flex: 1, width: '100%', height: '100%' }}>
         <AppQueryProvider>
           <ThemeProvider>
             <NexCrossmintProvider>
@@ -132,7 +127,11 @@ export default function RootLayout() {
                 <Stack
                   screenOptions={{
                     headerShown: false,
-                    contentStyle: { backgroundColor: '#141414' },
+                    contentStyle: {
+                      backgroundColor: '#141414',
+                      width: '100%',
+                      height: '100%',
+                    },
                     animation: 'fade',
                   }}
                 />

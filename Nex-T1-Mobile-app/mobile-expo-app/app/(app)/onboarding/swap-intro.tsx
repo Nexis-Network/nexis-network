@@ -10,7 +10,7 @@ import { Button } from '@presentation/components/ui/button';
 
 export default function SwapIntroScreen() {
   const handleContinue = useCallback(() => {
-    router.push('/(app)/onboarding/profile-setup');
+    router.push('/onboarding/profile-setup');
   }, []);
 
   return (

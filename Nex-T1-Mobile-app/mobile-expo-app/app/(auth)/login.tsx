@@ -59,7 +59,7 @@ export default function LoginScreen() {
     async (data: LoginFormData) => {
       const result = await signIn(data.email, data.password);
       if (result.ok) {
-        router.replace('/(app)/(tabs)/chat');
+        router.replace('/chat');
       }
     },
     [signIn],
@@ -170,7 +170,7 @@ export default function LoginScreen() {
             <Text variant="caption" color="secondary">
               Don't have an account?{' '}
             </Text>
-            <Link href="/(auth)/register" asChild>
+            <Link href="/register" asChild>
               <Pressable hitSlop={8}>
                 <Text variant="caption" color="brand" className="font-semibold">
                   Sign Up

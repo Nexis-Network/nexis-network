@@ -15,7 +15,7 @@ export default function WalletSuccessScreen() {
   const crossmintWallets = wallets.filter((w) => w.walletProvider === 'crossmint');
 
   const handleContinue = useCallback(() => {
-    router.push('/(app)/onboarding/swap-intro');
+    router.push('/onboarding/swap-intro');
   }, []);
 
   return (

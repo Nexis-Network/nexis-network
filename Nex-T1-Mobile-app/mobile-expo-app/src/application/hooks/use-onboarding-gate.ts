@@ -58,12 +58,12 @@ export function useOnboardingGate(): UseOnboardingGateReturn {
           setIsOnboarded(true);
         } else {
           setIsOnboarded(false);
-          router.replace('/(app)/onboarding/wallet-setup' as never);
+          router.replace('/onboarding/wallet-setup');
         }
       } catch {
         if (!cancelled) {
           setIsOnboarded(false);
-          router.replace('/(app)/onboarding/wallet-setup' as never);
+          router.replace('/onboarding/wallet-setup');
         }
       } finally {
         if (!cancelled) {

@@ -7,7 +7,7 @@ import {
   Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -69,7 +69,10 @@ export default function RegisterScreen() {
   const onSubmit = useCallback(
     async (data: RegisterFormData) => {
       if (!termsAccepted) return;
-      await signUp(data.email, data.password, data.displayName);
+      const result = await signUp(data.email, data.password, data.displayName);
+      if (result.ok) {
+        router.replace('/chat');
+      }
     },
     [signUp, termsAccepted],
   );
@@ -214,7 +217,7 @@ export default function RegisterScreen() {
             <Text variant="caption" color="secondary">
               Already have an account?{' '}
             </Text>
-            <Link href="/(auth)/login" asChild>
+            <Link href="/login" asChild>
               <Pressable hitSlop={8}>
                 <Text variant="caption" color="brand" className="font-semibold">
                   Sign In

@@ -38,14 +38,20 @@ export default function AppLayout() {
     if (!session) return;
 
     const now = Date.now();
-    const expiresAt = session.expiresAt as number;
+    const expiresAt = Number(session.expiresAt);
 
-    if (expiresAt - now < REFRESH_THRESHOLD) {
-      void authRepo.refreshSession().then((result) => {
-        if (result.ok) {
-          setSession(result.value);
-        }
-      });
+    if (Number.isFinite(expiresAt) && expiresAt - now < REFRESH_THRESHOLD) {
+      void authRepo
+        .refreshSession()
+        .then((result) => {
+          if (result.ok) {
+            setSession(result.value);
+          }
+        })
+        .catch(() => {
+          // Network/runtime errors are non-fatal here; the next
+          // refresh cycle in useAuth will retry.
+        });
     }
   }, [session, authRepo, setSession]);
 
@@ -60,14 +66,18 @@ export default function AppLayout() {
 
   // Not authenticated -- redirect to login
   if (!isAuthenticated) {
-    return <Redirect href="/(auth)/login" />;
+    return <Redirect href="/login" />;
   }
 
   return (
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: '#141414' },
+        contentStyle: {
+          backgroundColor: '#141414',
+          width: '100%',
+          height: '100%',
+        },
         animation: 'fade',
       }}
     >
@@ -95,10 +105,6 @@ export default function AppLayout() {
       <Stack.Screen
         name="onboarding"
         options={{ gestureEnabled: false, animation: 'slide_from_right' }}
-      />
-      <Stack.Screen
-        name="admin"
-        options={{ animation: 'slide_from_right' }}
       />
     </Stack>
   );

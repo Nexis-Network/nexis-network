@@ -18,6 +18,10 @@ import {
   getOAuthConfig,
   getOAuthRedirectUri,
 } from '@infrastructure/auth/oauth-config';
+import {
+  registerPendingOAuthRequest,
+  consumePendingOAuthRequest,
+} from '@infrastructure/auth/oauth-pending-request';
 
 // Ensure web browser sessions are completed on return
 WebBrowser.maybeCompleteAuthSession();
@@ -86,7 +90,7 @@ export function AuthProviderGrid() {
         message,
       );
       if (authResult.ok) {
-        router.replace('/(app)/(tabs)/chat');
+        router.replace('/chat');
       }
     } finally {
       setActiveProvider(null);
@@ -116,7 +120,7 @@ export function AuthProviderGrid() {
         credential.authorizationCode,
       );
       if (result.ok) {
-        router.replace('/(app)/(tabs)/chat');
+        router.replace('/chat');
       }
     } catch {
       // User cancelled or error — signInWithApple sets error in store
@@ -137,6 +141,8 @@ export function AuthProviderGrid() {
       const providerKey = provider as AuthProviderType;
       setActiveProvider(providerKey);
 
+      const oauthState = `${provider}.${Date.now()}.${Math.random().toString(36).slice(2, 10)}`;
+
       try {
         const redirectUri = getOAuthRedirectUri();
 
@@ -144,23 +150,53 @@ export function AuthProviderGrid() {
           clientId: config.clientId,
           scopes: [...config.scopes],
           redirectUri,
-          // X/Twitter requires PKCE
-          usePKCE: provider === 'twitter',
+          state: oauthState,
+          // PKCE is required by Google's OAuth 2.0 policy for native apps
+          // and recommended for all providers (RFC 7636)
+          usePKCE: true,
         });
 
-        const result = await request.promptAsync(config.discovery);
+        registerPendingOAuthRequest(
+          oauthState,
+          request.codeVerifier
+            ? {
+                provider,
+                redirectUri,
+                codeVerifier: request.codeVerifier,
+              }
+            : {
+                provider,
+                redirectUri,
+              },
+        );
 
-        if (result.type === 'success' && result.params['code']) {
+        let result: AuthSession.AuthSessionResult;
+        try {
+          result = await request.promptAsync(config.discovery);
+        } catch {
+          // promptAsync can throw if the browser session is cancelled or
+          // the discovery document fetch fails — treat as a no-op.
+          return;
+        }
+
+        const code = result.type === 'success' ? result.params?.['code'] : undefined;
+        if (code) {
+          const returnedState =
+            result.type === 'success' ? result.params?.['state'] : undefined;
+
+          const pendingRequest = consumePendingOAuthRequest(returnedState ?? oauthState);
+          const codeVerifier = pendingRequest?.codeVerifier ?? request.codeVerifier;
+
           const authResult = await signInWithOAuth(
             provider,
-            result.params['code'],
+            code,
             redirectUri,
-            provider === 'twitter' && request.codeVerifier
-              ? { code_verifier: request.codeVerifier }
+            codeVerifier
+              ? { code_verifier: codeVerifier }
               : undefined,
           );
           if (authResult.ok) {
-            router.replace('/(app)/(tabs)/chat');
+            router.replace('/chat');
           }
         }
       } finally {
@@ -215,7 +251,7 @@ export function AuthProviderGrid() {
       </View>
 
       {/* Icon grid */}
-      <View className="flex-row flex-wrap justify-center" style={{ gap: 10 }}>
+      <View className="flex-row flex-wrap justify-center" style={{ gap: 12 }}>
         {PROVIDERS.map((provider) => (
           <AuthProviderButton
             key={provider}

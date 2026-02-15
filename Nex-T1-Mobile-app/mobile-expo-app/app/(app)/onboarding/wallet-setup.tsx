@@ -51,7 +51,7 @@ export default function WalletSetupScreen() {
   );
 
   const handleContinue = useCallback(() => {
-    router.push('/(app)/onboarding/wallet-success');
+    router.push('/onboarding/wallet-success');
   }, []);
 
   return (

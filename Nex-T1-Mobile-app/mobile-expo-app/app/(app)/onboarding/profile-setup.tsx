@@ -21,7 +21,7 @@ export default function ProfileSetupScreen() {
       // Mark onboarding complete in SecureStore
       await markOnboardingComplete();
       // Navigate to main app
-      router.replace('/(app)/(tabs)' as never);
+      router.replace('/chat');
     } finally {
       setIsSubmitting(false);
     }

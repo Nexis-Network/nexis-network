@@ -1,4 +1,4 @@
-import { View, Platform } from 'react-native';
+import { View, Platform, ActivityIndicator } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -48,14 +48,13 @@ export default function TabsLayout() {
   const { isChecking, isOnboarded } = useOnboardingGate();
   const insets = useSafeAreaInsets();
 
-  // Show nothing while checking onboarding status
-  if (isChecking) {
-    return null;
-  }
-
-  // If not onboarded, the hook already redirected — render nothing
-  if (!isOnboarded) {
-    return null;
+  // Show loading indicator while checking onboarding status
+  if (isChecking || !isOnboarded) {
+    return (
+      <View className="flex-1 bg-page items-center justify-center">
+        <ActivityIndicator size="large" color="#38bdf8" />
+      </View>
+    );
   }
 
   return (
@@ -63,6 +62,11 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        sceneStyle: {
+          backgroundColor: '#141414',
+          width: '100%',
+          height: '100%',
+        },
         tabBarStyle: {
           backgroundColor: '#1A1A1A',
           borderTopWidth: 1,
