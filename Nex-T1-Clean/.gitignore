@@ -1,0 +1,182 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js — catch-all for any .next-* build/cache directory
+.next/
+.next-*/
+out/
+/build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.backend.local
+.env.development.local
+.env.test.local
+.env.production
+.env.production.local
+.env.mcp
+railway_vars.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+docs/audit/_logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# (Next.js build output patterns covered by .next-*/ above)
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vercel
+.vercel
+vercel-log-errors.json
+
+# Python virtual environments
+.venv/
+
+# Turbo
+.turbo
+
+# Large documentation files (moved to docs/llm-docs/)
+docs/llm-docs/*.txt
+
+# Local research PDFs (keep out of git)
+documents/*.pdf
+documents/*.PDF
+
+# Test results
+test-results/
+playwright-report/
+
+# Agent temporary files
+.antigravity/
+.claude/
+current-task/
+
+# Supabase temp
+supabase/.temp/
+
+# Local env audits / dumps (often contain secrets)
+env_audit.txt
+main_vars.txt
+SUPABASE_CREDENTIALS.md
+*.backup
+.env.local.backup
+.env.*.backup
+
+# Private keys / keypairs — NEVER commit
+deployer-key.json
+*.keypair.json
+*-keypair.json
+admin-wallet-private-key.md
+*.tar.bz2
+*.tar.gz
+*.p8
+output/
+worker.log
+.agent/
+logs/
+# Local Railway DB dump (keep local, do not track)
+railway_public.sql
+
+# Security audit / pentest evidence (local only)
+.sb-pentest-*
+
+# Temporary image/analysis files
+tmp-*.png
+tmp*.png
+artifact.png
+unused_deps.txt
+unused_folders.txt
+dead_code.txt
+purely_dead.txt
+duplicates.txt
+cleanup_log.txt
+build_log*.txt
+depcheck*.txt
+depcheck*.json
+
+# QA/auth temp files (may contain secrets)
+.tmp_magiclink*
+.tmp_qa_*

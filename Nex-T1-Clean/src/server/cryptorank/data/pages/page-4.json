@@ -1,0 +1,517 @@
+{
+  "drophunting_activities": {
+    "id": "drophunting_activities",
+    "method": "GET",
+    "path": "/v2/drophunting/activities",
+    "summary": "Drophunting Activities List (without exclusive tasks)",
+    "description": "**Description**\n\nThis endpoint returns a list of drophunting activities similar to [cryptorank.io/drophunting](https://cryptorank.io/drophunting). Results can be tailored using pagination (`limit`, `skip`), sorting (`sortBy`, `sortDirection`), and filters (`activityStatus`, `rewardType`). Each activity includes:\n- *Tasks* (type, status, cost, required time) — Exclusive tasks are available only with the Business plan (in the endpoint v2/drophunting/activities/with-exclusive).\n- *Funds* that invested in the project\n- *Total raised funds*\n- *Social metrics* (X network score and subscriber count)\n\n**Pricing**\n- 1 credit for each request up to 100 items, with any excess rounded up (e.g., 101-200 items will cost 2 credits).\n- 1 credit for each applied filter.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Drophunting Activities",
+    "query": [
+      {
+        "name": "status",
+        "required": false,
+        "schema": {
+          "enum": [
+            "POTENTIAL",
+            "CONFIRMED",
+            "VERIFICATION",
+            "REWARD_AVAILABLE",
+            "DISTRIBUTED",
+            "SNAPSHOT"
+          ],
+          "type": "string"
+        },
+        "description": "Filters results by the specified activity status, returning only activities with a matching status",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "reward",
+        "required": false,
+        "schema": {
+          "enum": [
+            "airdrop",
+            "ambassador",
+            "fee",
+            "nft",
+            "points",
+            "role",
+            "spaceships",
+            "whitelist"
+          ],
+          "type": "string"
+        },
+        "description": "Filters results by the specified reward type, returning only activities with that matching type",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "lastStatusUpdate",
+          "enum": [
+            "lastStatusUpdate",
+            "name"
+          ],
+          "type": "string"
+        },
+        "description": "The field by which the results are sorted",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "The sorting direction: ascending (`ASC`) or descending (`DESC`)",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            200,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of activities to return in a single request",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of activities to skip (useful for pagination in combination with `limit`)",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "drophunting_activities_all_tasks": {
+    "id": "drophunting_activities_all_tasks",
+    "method": "GET",
+    "path": "/v2/drophunting/activities/all-tasks",
+    "summary": "Drophunting Activities List (including exclusive tasks)",
+    "description": "**Description**\n\nThis endpoint returns a list of drophunting activities similar to [cryptorank.io/drophunting](https://cryptorank.io/drophunting). Results can be tailored using pagination (`limit`, `skip`), sorting (`sortBy`, `sortDirection`), and filters (`activityStatus`, `rewardType`). Each activity includes:\n- *Tasks* (type, status, cost, required time) — also including exclusive tasks\n- *Funds* that invested in the project\n- *Total raised funds*\n- *Social metrics* (X network score and subscriber count)\n\n**Pricing**\n- 1 credit for each request up to 100 items, with any excess rounded up (e.g., 101-200 items will cost 2 credits).\n- 1 credit for each applied filter.\n\n### Access & Availability\n- ✅ Included in: Business\n- ❌ Not available in: Sandbox, Basic, Advanced, Pro",
+    "tag": "Drophunting Activities",
+    "query": [
+      {
+        "name": "status",
+        "required": false,
+        "schema": {
+          "enum": [
+            "POTENTIAL",
+            "CONFIRMED",
+            "VERIFICATION",
+            "REWARD_AVAILABLE",
+            "DISTRIBUTED",
+            "SNAPSHOT"
+          ],
+          "type": "string"
+        },
+        "description": "Filters results by the specified activity status, returning only activities with a matching status",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "reward",
+        "required": false,
+        "schema": {
+          "enum": [
+            "airdrop",
+            "ambassador",
+            "fee",
+            "nft",
+            "points",
+            "role",
+            "spaceships",
+            "whitelist"
+          ],
+          "type": "string"
+        },
+        "description": "Filters results by the specified reward type, returning only activities with that matching type",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "lastStatusUpdate",
+          "enum": [
+            "lastStatusUpdate",
+            "name"
+          ],
+          "type": "string"
+        },
+        "description": "The field by which the results are sorted",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "The sorting direction: ascending (`ASC`) or descending (`DESC`)",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            200,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of activities to return in a single request",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of activities to skip (useful for pagination in combination with `limit`)",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "drophunting_activities_by_id": {
+    "id": "drophunting_activities_by_id",
+    "method": "GET",
+    "path": "/v2/drophunting/activities/{id}",
+    "summary": "Drophunting Activity by ID (without exclusive tasks)",
+    "description": "**Description**\n\nReturns full details of a specific drophunting activity, including guides and tasks. Exclusive tasks are available only with the Business plan (in the endpoint v2/drophunting/activities/:id/all-tasks).\n\n**Pricing**\n- 1 credit\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Drophunting Activities",
+    "query": [
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "default": "en",
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "Locale",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "drophunting_activities_by_id_all_tasks": {
+    "id": "drophunting_activities_by_id_all_tasks",
+    "method": "GET",
+    "path": "/v2/drophunting/activities/{id}/all-tasks",
+    "summary": "Drophunting Activity by ID (including exclusive tasks)",
+    "description": "**Description**\n\nReturns full details of a specific drophunting activity, including guides and tasks (including exclusive tasks). Available only with the Business plan.\n\n**Pricing**\n- 1 credit\n\n### Access & Availability\n- ✅ Included in: Business\n- ❌ Not available in: Sandbox, Basic, Advanced, Pro",
+    "tag": "Drophunting Activities",
+    "query": [
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "default": "en",
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "Locale",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "ecosystems_map": {
+    "id": "ecosystems_map",
+    "method": "GET",
+    "path": "/v2/ecosystems/map",
+    "summary": "Ecosystems List(All)",
+    "description": "**Description**\n\nThis endpoint provides a lightweight list of `id`, `slug`, `name`, `projectsCount`, `Tags`. The response delivers essential details for efficient identification and categorization. Filtering by `Tags` is also supported for targeted queries.\n\n**Pricing**\n- 1 credit per request;\n- +1 additional credit if filtering is applied.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Ecosystems",
+    "query": [
+      {
+        "name": "tagId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Tag to filter by. Full list of tags can be accessed with this endpoint: `/ecosystems/tags`",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "ecosystems_tags": {
+    "id": "ecosystems_tags",
+    "method": "GET",
+    "path": "/v2/ecosystems/tags",
+    "summary": "Ecosystems Tags(All)",
+    "description": "**Description**\n\nThis endpoint provides information about all ecosystem `Tags`. This data is required for proper interaction with other endpoints.\n\n**Pricing**\n- 1 credit per request.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Ecosystems",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "ecosystems_by_id": {
+    "id": "ecosystems_by_id",
+    "method": "GET",
+    "path": "/v2/ecosystems/{id}",
+    "summary": "Full  Metrics for a Specific Ecosystem",
+    "description": "**Description**\n\nThis endpoint returns a specific ecosystem with a full data set including: `id`, `name`, `slug`, `logo`, `projectsCount`, `newProjectsCount`, `marketCap`, `marketCapChangePercent`, `tvl`, `tvlChangePercent`, `funds`, `Tags`, `links`, `shortDescription`, `categories`.\n\n**Pricing**\n- 1 credit per request.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "Ecosystems",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "ecosystems_by_id_projects": {
+    "id": "ecosystems_by_id_projects",
+    "method": "GET",
+    "path": "/v2/ecosystems/{id}/projects",
+    "summary": "Project list for a Specific Ecosystem",
+    "description": "**Description**\n\nThis endpoint returns a list of projects associated with a specific ecosystem, including: `name`, `logo`, `shortDescription`, `categories`. Pagination is applied with 100 items per request. Filtering is available by `categories` and `tag`.\n\n**Pricing**\n- Pagination is set to 100 projects per page;\n- 1 credit per request for up to 100 results, 2 credits for 101–200, and so on;\n- Each request costs 1 credit for up to 100 entries, with additional credits for larger queries or filter usage.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "Ecosystems",
+    "query": [
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            200,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of items to return",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of items to skip",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "categoryId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "launchpads_list": {
+    "id": "launchpads_list",
+    "method": "GET",
+    "path": "/v2/launchpads",
+    "summary": "Sorted list of launchpads with basic information",
+    "description": "**Description**\n\nThis endpoint provides essential metrics for a list of launchpads. It offers details such as the launchpad's `id`, `slug`, `name`, `type`, `rank`, `logo`, `currentROI`, `projectsCount`, `totalRaised`. The endpoint supports sorting by the following parameters: `rank` (default), `projectsCount`, and `currentROI`. Filtering by type is also supported for targeted queries.\n\nThe `timeframe` parameter is required for the request. Available values:\n- `1M` – 1 month;\n- `3M` – 3 months;\n- `6M` – 6 months;\n- `1Y` – 1 year;\n- `3Y` – 3 years;\n- `All` – full data history.\n\n**Pricing**\n- Each request costs 1 credit for every 10 items. Results above 10 are rounded up (e.g., 11–20 items = 2 credits);\n- An additional 1 credit is charged per applied filter;\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "Launchpads",
+    "query": [
+      {
+        "name": "timeframe",
+        "required": false,
+        "schema": {
+          "default": "1Y",
+          "enum": [
+            "1M",
+            "3M",
+            "6M",
+            "1Y",
+            "3Y",
+            "ALL"
+          ],
+          "type": "string"
+        },
+        "description": "Required timeframe for data calculation",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "type",
+        "required": false,
+        "schema": {
+          "enum": [
+            "IDO",
+            "IEO",
+            "ICO"
+          ],
+          "type": "string"
+        },
+        "description": "Type to filter by (IDO, IEO, ICO)",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "rank",
+          "enum": [
+            "currentRoi",
+            "projectsCount",
+            "rank"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 10,
+          "enum": [
+            10,
+            50,
+            100,
+            200,
+            500
+          ],
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "launchpads_map": {
+    "id": "launchpads_map",
+    "method": "GET",
+    "path": "/v2/launchpads/map",
+    "summary": "Launchpad List(All)",
+    "description": "**Description**\n\nThis endpoint provides a lightweight list of `id`, `slug`, `name`, `rank1y`, `type`. The response delivers essential details for efficient identification and categorization. Filtering by `type` is also supported for targeted queries.\n\n**Pricing**\n- 1 credit per request;\n- +1 additional credit if filtering is applied.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Launchpads",
+    "query": [
+      {
+        "name": "type",
+        "required": false,
+        "schema": {
+          "enum": [
+            "IDO",
+            "IEO",
+            "ICO"
+          ],
+          "type": "string"
+        },
+        "description": "Type to filter by (IDO, IEO, ICO)",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  }
+}

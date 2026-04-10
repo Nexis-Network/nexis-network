@@ -1,0 +1,90 @@
+[
+  {
+    "ticker": "IBIT",
+    "name": "iShares Bitcoin Trust",
+    "issuer": "BlackRock",
+    "custodian": "Coinbase Custody",
+    "pctFee": 0.25,
+    "flows": 152500000,
+    "aum": 21800000000,
+    "volume": 880000000,
+    "url": "https://www.ishares.com/us/products/349830/ishares-bitcoin-trust"
+  },
+  {
+    "ticker": "FBTC",
+    "name": "Fidelity Wise Origin Bitcoin Fund",
+    "issuer": "Fidelity",
+    "custodian": "Fidelity Digital Assets",
+    "pctFee": 0.25,
+    "flows": 93500000,
+    "aum": 10300000000,
+    "volume": 520000000,
+    "url": "https://fundresearch.fidelity.com/mutual-funds/summary/31517K109"
+  },
+  {
+    "ticker": "ARKB",
+    "name": "ARK 21Shares Bitcoin ETF",
+    "issuer": "ARK Invest",
+    "custodian": "Coinbase Custody",
+    "pctFee": 0.21,
+    "flows": 48700000,
+    "aum": 3300000000,
+    "volume": 185000000,
+    "url": "https://ark-21shares.com/arkb/"
+  },
+  {
+    "ticker": "BITB",
+    "name": "Bitwise Bitcoin ETF",
+    "issuer": "Bitwise",
+    "custodian": "Coinbase Custody",
+    "pctFee": 0.20,
+    "flows": 41500000,
+    "aum": 2100000000,
+    "volume": 112000000,
+    "url": "https://bitbetf.com/"
+  },
+  {
+    "ticker": "BTCO",
+    "name": "Invesco Galaxy Bitcoin ETF",
+    "issuer": "Invesco",
+    "custodian": "Coinbase Custody",
+    "pctFee": 0.39,
+    "flows": 12200000,
+    "aum": 1020000000,
+    "volume": 74000000,
+    "url": "https://etf.invesco.com/us/bitcoin"
+  },
+  {
+    "ticker": "HODL",
+    "name": "VanEck Bitcoin Trust",
+    "issuer": "VanEck",
+    "custodian": "Gemini Trust",
+    "pctFee": 0.25,
+    "flows": 18300000,
+    "aum": 950000000,
+    "volume": 67000000,
+    "url": "https://www.vaneck.com/us/en/investments/bitcoin-etf/"
+  },
+  {
+    "ticker": "BRRR",
+    "name": "Valkyrie Bitcoin Fund",
+    "issuer": "Valkyrie",
+    "custodian": "Coinbase Custody",
+    "pctFee": 0.25,
+    "flows": 5300000,
+    "aum": 420000000,
+    "volume": 28000000,
+    "url": "https://www.valkyrieinvest.com/brrr"
+  },
+  {
+    "ticker": "DEFI",
+    "name": "Hashdex Bitcoin Futures ETF",
+    "issuer": "Hashdex",
+    "custodian": "BitGo Trust",
+    "pctFee": 0.90,
+    "flows": -2100000,
+    "aum": 260000000,
+    "volume": 9000000,
+    "url": "https://www.hashdex.com/en/defi"
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Understanding Nex-T1 Models: MAX, T1, T0, and Coder",
+    "description": "A comprehensive guide to choosing the right Nex-T1 model for your DeFi operations. Compare capabilities, performance, and ideal use cases for each variant.",
+    "slug": "understanding-nex-t1-models",
+    "href": "understanding-nex-t1-models",
+    "publishedAt": "2025-11-07T09:00:00.000Z",
+    "date": "2025-11-07",
+    "image": "",
+    "category": {
+      "title": "Model Guides",
+      "slug": "model-guides"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Mastering Prompt Engineering for DeFi Operations",
+    "description": "Learn advanced techniques for crafting effective prompts that maximize Nex-T1's capabilities. From simple queries to complex multi-step workflows.",
+    "slug": "mastering-prompt-engineering-defi",
+    "href": "mastering-prompt-engineering-defi",
+    "publishedAt": "2025-11-06T14:00:00.000Z",
+    "date": "2025-11-06",
+    "image": "",
+    "category": {
+      "title": "Prompt Engineering",
+      "slug": "prompt-engineering"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Nex-T1 MAX: Advanced Market Analysis for Pro Traders",
+    "description": "Discover the full power of Nex-T1 MAX—our frontier AI model built for complex market research, institutional-grade analysis, and sophisticated trading strategies.",
+    "slug": "nex-t1-max-advanced-market-analysis",
+    "href": "nex-t1-max-advanced-market-analysis",
+    "publishedAt": "2025-11-05T11:00:00.000Z",
+    "date": "2025-11-05",
+    "image": "/blog/images/responses-api.png",
+    "category": {
+      "title": "Feature Release",
+      "slug": "feature-release"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Building with Nex-T1: Developer Integration Guide",
+    "description": "Complete technical guide to integrating Nex-T1 into your dApp or trading system. API documentation, code examples, and best practices for production deployment.",
+    "slug": "building-with-nex-t1-developer-guide",
+    "href": "building-with-nex-t1-developer-guide",
+    "publishedAt": "2025-11-04T10:30:00.000Z",
+    "date": "2025-11-04",
+    "image": "/blog/images/nex-coderpng.png",
+    "category": {
+      "title": "Developer Resources",
+      "slug": "developer-resources"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Secure Autonomous Trading: Nex-T1's Safety Framework",
+    "description": "Deep dive into the security architecture that makes Nex-T1 safe for autonomous DeFi operations. Learn about human-in-the-loop controls, transaction simulation, and multi-layer protection.",
+    "slug": "secure-autonomous-trading-safety-framework",
+    "href": "secure-autonomous-trading-safety-framework",
+    "publishedAt": "2025-11-03T13:00:00.000Z",
+    "date": "2025-11-03",
+    "image": "",
+    "category": {
+      "title": "Security & Compliance",
+      "slug": "security-compliance"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Real-Time Market Intelligence with Nex-T1",
+    "description": "How Nex-T1 aggregates data from Pyth, Chainlink, CoinGecko, Helius, and more to deliver institutional-grade market intelligence in real-time.",
+    "slug": "real-time-market-intelligence",
+    "href": "real-time-market-intelligence",
+    "publishedAt": "2025-11-02T09:00:00.000Z",
+    "date": "2025-11-02",
+    "image": "",
+    "category": {
+      "title": "DeFi Insights",
+      "slug": "defi-insights"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Nex-Coder: AI-Powered Smart Contract Development",
+    "description": "Introducing Nex-Coder—the AI model specialized for smart contract development, auditing, and deployment. From natural language specs to production-ready Solidity.",
+    "slug": "nex-coder-smart-contract-development",
+    "href": "nex-coder-smart-contract-development",
+    "publishedAt": "2025-11-01T14:30:00.000Z",
+    "date": "2025-11-01",
+    "image": "",
+    "category": {
+      "title": "Feature Release",
+      "slug": "feature-release"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Multi-Chain DeFi Made Simple with Nex-T1",
+    "description": "Navigate the complexity of multi-chain DeFi with ease. Learn how Nex-T1 seamlessly manages assets, executes trades, and optimizes strategies across Ethereum, Solana, Polygon, and beyond.",
+    "slug": "multi-chain-defi-made-simple",
+    "href": "multi-chain-defi-made-simple",
+    "publishedAt": "2025-10-31T10:00:00.000Z",
+    "date": "2025-10-31",
+    "image": "",
+    "category": {
+      "title": "Use Cases",
+      "slug": "use-cases"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  }
+]

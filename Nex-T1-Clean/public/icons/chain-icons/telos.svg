@@ -1,0 +1,12 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+<rect width="40" height="40" rx="6" fill="white"/>
+<rect x="0.5" y="0.5" width="39" height="39" rx="5.5" stroke="black" stroke-opacity="0.08"/>
+<path d="M20 33C12.8323 33 7 27.1678 7 20C7 12.8323 12.8323 7 20 7C27.1678 7 33 12.8323 33 20C33 27.1678 27.1678 33 20 33ZM20 11.7273C15.4382 11.7273 11.7273 15.4382 11.7273 20C11.7273 24.5618 15.4382 28.2728 20 28.2728C24.5618 28.2728 28.2728 24.5618 28.2728 20C28.2728 15.4382 24.5618 11.7273 20 11.7273Z" fill="url(#paint0_linear_10508_431069)"/>
+<defs>
+<linearGradient id="paint0_linear_10508_431069" x1="10.4777" y1="10.832" x2="27.8572" y2="33.2573" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00F2FE"/>
+<stop offset="0.535" stop-color="#4FACFE"/>
+<stop offset="0.975" stop-color="#C471F5"/>
+</linearGradient>
+</defs>
+</svg>

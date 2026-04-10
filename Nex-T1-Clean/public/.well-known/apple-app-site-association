@@ -1,0 +1,31 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "Y92483U7GL.ai.next1.app",
+        "paths": [
+          "/app/*",
+          "/auth/*",
+          "/reset-password*",
+          "/e2e/*"
+        ]
+      },
+      {
+        "appID": "Y92483U7GL.ai.nex.t1.mobile",
+        "paths": [
+          "/app/*",
+          "/auth/*",
+          "/reset-password*",
+          "/e2e/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "Y92483U7GL.ai.next1.app",
+      "Y92483U7GL.ai.nex.t1.mobile"
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+@font-face {
+  font-family: "LabsAmiga";
+  src: url("/assets/fonts/LABSAmiga-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.overlay {
+  --edge-gutter-left: 2.75rem;
+  --edge-gutter-right: 2.75rem;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  width: calc(100svw + 1rem);
+  height: 100svh;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  pointer-events: none;
+  opacity: 1;
+  will-change: opacity;
+  contain: paint;
+}
+
+.overlayRevealing {
+  opacity: 0;
+  transition: opacity 0.24s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.textGrid {
+  display: grid;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 2.75rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 2.75rem;
+}
+
+.col {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  background-color: transparent;
+}
+
+.col::after {
+  position: absolute;
+  z-index: 300;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  content: "";
+  background-color: #9a9a9a;
+  transform: translateY(100%);
+  animation: grow-line 1s forwards;
+  animation-delay: var(--line-delay);
+}
+
+.pixel {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: #c4c4c4;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.pixelFade {
+  background-color: transparent;
+  opacity: 0;
+  transition:
+    background-color 0.28s linear,
+    opacity 0.28s linear;
+  transition-delay: var(--pixel-delay);
+  will-change: opacity, background-color;
+}
+
+.progressHud {
+  position: absolute;
+  z-index: 650;
+  left: calc(var(--edge-gutter-left) + clamp(0.5rem, 0.8vw, 0.85rem));
+  width: calc((100% - var(--edge-gutter-left) - var(--edge-gutter-right)) / 4 - clamp(1rem, 1.8vw, 1.7rem));
+  bottom: calc(clamp(0.85rem, 2.2vw, 2rem) + env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: clamp(0.18rem, 0.5vw, 0.38rem);
+  font-family: "LabsAmiga", "Geist Mono", monospace;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  color: #090909;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+
+.progressValue {
+  font-size: clamp(3.2rem, 8.2vw, 7.4rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+
+.progressPercent {
+  font-size: clamp(1.1rem, 2.35vw, 1.9rem);
+  margin-bottom: clamp(0.45rem, 0.95vw, 0.82rem);
+}
+
+@media (min-width: 1440px) {
+  .overlay {
+    --edge-gutter-left: 3.75rem;
+    --edge-gutter-right: 3.75rem;
+    width: calc(100svw + 1.5rem);
+  }
+
+  .textGrid {
+    grid-template-columns: 3.75rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 3.75rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .overlay {
+    --edge-gutter-left: 2.75rem;
+    --edge-gutter-right: 3.25rem;
+    width: calc(100% + 1rem);
+  }
+
+  .textGrid {
+    grid-template-columns: 2.75rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 3.25rem;
+  }
+
+  .col {
+    overflow: hidden;
+  }
+
+  .progressHud {
+    left: calc(var(--edge-gutter-left) + clamp(0.45rem, 2.2vw, 0.75rem));
+    width: calc((100% - var(--edge-gutter-left) - var(--edge-gutter-right)) / 2 - clamp(0.75rem, 2vw, 1.15rem));
+    bottom: calc(clamp(0.75rem, 4vw, 1.25rem) + env(safe-area-inset-bottom));
+  }
+
+  .progressValue {
+    font-size: clamp(2.6rem, 12.2vw, 5.1rem);
+  }
+
+  .progressPercent {
+    font-size: clamp(0.9rem, 4.9vw, 1.4rem);
+    margin-bottom: clamp(0.28rem, 1.6vw, 0.45rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .progressHud {
+    width: calc((100% - var(--edge-gutter-left) - var(--edge-gutter-right)) / 2 - 0.8rem);
+  }
+
+  .progressPercent {
+    margin-bottom: 0.3rem;
+  }
+}
+
+@keyframes grow-line {
+  to {
+    transform: translateY(0);
+  }
+}

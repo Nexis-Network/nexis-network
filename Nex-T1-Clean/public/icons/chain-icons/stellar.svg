@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" width="40" height="40">
+  <g id="stellar">
+    <rect width="40" height="40" rx="6" fill="black"/>
+    <path
+      d="M20 8L22.94 15.96L31.41 16.29L24.76 21.55L27.05 29.71L20 25L12.95 29.71L15.24 21.55L8.59 16.29L17.06 15.96L20 8Z"
+      fill="white"
+    />
+  </g>
+</svg>
+

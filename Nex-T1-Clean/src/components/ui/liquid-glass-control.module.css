@@ -1,0 +1,203 @@
+@property --nex-liquid-glass-control-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nex-liquid-glass-control-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+.glassControl {
+  --nex-liquid-glass-control-border-width: 1px;
+  --nex-liquid-glass-control-backdrop-blur: 14px;
+  --nex-liquid-glass-control-surface-background: var(
+    --auth-liquid-glass-surface-background,
+    linear-gradient(-75deg, #ffffff14, #ffffff59, #ffffff18)
+  );
+  --nex-liquid-glass-control-surface-shadow: var(
+    --auth-liquid-glass-surface-shadow,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.25em 0.125em -0.125em #0003,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0.85em 1.8em -1.2em rgb(15 23 42 / 0.38)
+  );
+  --nex-liquid-glass-control-surface-shadow-hover: var(
+    --auth-liquid-glass-surface-shadow-hover,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.15em 0.05em -0.1em #00000040,
+    0 0 0.05em 0.1em inset #ffffff80,
+    0 0.7em 1.45em -1em rgb(15 23 42 / 0.46)
+  );
+  --nex-liquid-glass-control-surface-shadow-active: var(
+    --auth-liquid-glass-surface-shadow-active,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.125em 0.125em -0.125em #0003,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0.225em 0.05em 0 #0000000d,
+    0 0.25em 0 0 #ffffffbf,
+    inset 0 0.25em 0.05em 0 #00000026
+  );
+  --nex-liquid-glass-control-border-background: var(
+    --auth-liquid-glass-border-background,
+    conic-gradient(
+      from var(--nex-liquid-glass-control-angle-1) at 50% 50%,
+      #00000080,
+      #0000 5% 40%,
+      #00000080 50%,
+      #0000 60% 95%,
+      #00000080
+    ),
+    linear-gradient(180deg, #ffffff80, #ffffff80)
+  );
+  --nex-liquid-glass-control-border-shadow: var(
+    --auth-liquid-glass-border-shadow,
+    inset 0 0 0 0.5px #ffffff80
+  );
+  --nex-liquid-glass-control-shine-background: var(
+    --auth-liquid-glass-shine-background,
+    linear-gradient(
+      var(--nex-liquid-glass-control-angle-2),
+      #fff0 0%,
+      #ffffff80 40% 50%,
+      #fff0 55%
+    )
+  );
+  --nex-liquid-glass-control-text-color: var(
+    --auth-liquid-glass-text-color,
+    #121212
+  );
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: var(--nex-liquid-glass-control-surface-background);
+  border-radius: 999vw;
+  box-shadow: var(--nex-liquid-glass-control-surface-shadow);
+  color: var(--nex-liquid-glass-control-text-color);
+  -webkit-backdrop-filter: blur(var(--nex-liquid-glass-control-backdrop-blur))
+    saturate(1.38);
+  backdrop-filter: blur(var(--nex-liquid-glass-control-backdrop-blur))
+    saturate(1.38);
+  filter: drop-shadow(0 0.45rem 1rem rgb(15 23 42 / 0.12));
+  text-shadow: 0 0.05em 0.05em #0000000d;
+  will-change: transform, box-shadow, filter;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    -webkit-backdrop-filter 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    backdrop-filter 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    text-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.glassControl::before,
+.glassControl::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.glassControl::before {
+  top: calc(0% - var(--nex-liquid-glass-control-border-width) / 2);
+  left: calc(0% - var(--nex-liquid-glass-control-border-width) / 2);
+  box-sizing: border-box;
+  width: calc(100% + var(--nex-liquid-glass-control-border-width));
+  height: calc(100% + var(--nex-liquid-glass-control-border-width));
+  padding: var(--nex-liquid-glass-control-border-width);
+  background:
+    var(--nex-liquid-glass-control-border-background);
+  box-shadow: var(--nex-liquid-glass-control-border-shadow);
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: --nex-liquid-glass-control-angle-1 0.5s;
+}
+
+.glassControl::after {
+  inset: 1px;
+  z-index: 1;
+  background: var(--nex-liquid-glass-control-shine-background);
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  transition:
+    background-position 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    --nex-liquid-glass-control-angle-2 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.glassControlActive,
+.glassControl:hover,
+.glassControl:focus-visible,
+.glassControl[data-state="open"],
+.glassControl[aria-expanded="true"],
+.glassControl[aria-pressed="true"],
+.glassControl[data-has-overrides="true"] {
+  box-shadow: var(--nex-liquid-glass-control-surface-shadow-hover);
+  -webkit-backdrop-filter: blur(1px) saturate(1.45);
+  backdrop-filter: blur(1px) saturate(1.45);
+  filter: drop-shadow(0 0.35rem 0.9rem rgb(15 23 42 / 0.16));
+  text-shadow: 0.025em 0.025em 0.025em #0000000f;
+  transform: translateY(-1px);
+}
+
+.glassControlActive::before,
+.glassControl:hover::before,
+.glassControl:focus-visible::before,
+.glassControl[data-state="open"]::before,
+.glassControl[aria-expanded="true"]::before,
+.glassControl[aria-pressed="true"]::before,
+.glassControl[data-has-overrides="true"]::before {
+  --nex-liquid-glass-control-angle-1: -125deg;
+}
+
+.glassControlActive::after,
+.glassControl:hover::after,
+.glassControl:focus-visible::after,
+.glassControl[data-state="open"]::after,
+.glassControl[aria-expanded="true"]::after,
+.glassControl[aria-pressed="true"]::after,
+.glassControl[data-has-overrides="true"]::after {
+  background-position: 25%;
+}
+
+.glassControl:active {
+  box-shadow: var(--nex-liquid-glass-control-surface-shadow-active);
+  filter: drop-shadow(0 0.18rem 0.6rem rgb(15 23 42 / 0.12));
+  text-shadow: 0.025em 0.1em 0.05em #00000014;
+  transform: translateY(1px) scale(0.98);
+}
+
+.glassControl:active::after {
+  --nex-liquid-glass-control-angle-2: -15deg;
+  background-position: 50% 15%;
+}
+
+.glassControl:focus-visible {
+  box-shadow:
+    var(--nex-liquid-glass-control-surface-shadow-hover),
+    0 0 0 3px #1919191f;
+  outline: none;
+}
+
+.glassControl:disabled,
+.glassControl[aria-disabled="true"] {
+  cursor: default;
+  filter: saturate(0.85) drop-shadow(0 0.2rem 0.45rem rgb(15 23 42 / 0.08));
+  opacity: 0.6;
+  pointer-events: none;
+  transform: none;
+}

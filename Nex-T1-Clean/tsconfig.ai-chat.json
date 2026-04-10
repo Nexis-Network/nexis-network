@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false
+  },
+  "include": [
+    "src/app/api/chat/**/*.ts",
+    "src/lib/hooks/chat/**/*.ts",
+    "src/lib/hooks/chat/**/*.tsx",
+    "src/modules/ai/tools/**/*.ts",
+    "src/modules/chat/**/*.ts",
+    "src/modules/chat/**/*.tsx",
+    "src/server/mcp/**/*.ts",
+    "src/server/services/ai-sdk/**/*.ts",
+    "src/types/**/*.ts",
+    "types/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".next-dev",
+    "tests/**"
+  ]
+}

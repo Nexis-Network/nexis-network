@@ -1,0 +1,434 @@
+{
+  "exchanges_map": {
+    "id": "exchanges_map",
+    "method": "GET",
+    "path": "/v2/exchanges/map",
+    "summary": "Primary Exchange Data",
+    "description": "**Description**\n\nProvides basic details about exchanges, including `id`, `name`, and `type`. Exchange types include DEX, CEX, and Futures. Designed for quick identification and categorization of exchanges.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Exchanges",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "exchanges_by_id": {
+    "id": "exchanges_by_id",
+    "method": "GET",
+    "path": "/v2/exchanges/{id}",
+    "summary": "Data for a Specific Fund or Exchange",
+    "description": "**Description**\n\nThis endpoint provides key data for a specific fund or exchange, including its `id`, `slug`, `name`, type (DEX, CEX, or Futures), logo, market share, number of trading pairs and cryptocurrencies, 24-hour volume change, year of foundation, and jurisdiction. Volume metrics, such as adjusted and reported volumes, are available for 24 hours, 30 days, 6 months, and 12 months.\n\n**Pricing**\n- 1 credit\n- 1 credit for each converter (except USD)\n\n### Access & Availability\n- ✅ Included in: Basic, Advanced, Pro, Business\n- ❌ Not available in: Sandbox",
+    "tag": "Exchanges",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "exchanges_by_id_full_metadata": {
+    "id": "exchanges_by_id_full_metadata",
+    "method": "GET",
+    "path": "/v2/exchanges/{id}/full-metadata",
+    "summary": "Comprehensive Exchange Data with Proof-of-Reserves Details",
+    "description": "**Description**\n\nThis endpoint provides full data about a specific exchange, including key metrics, market activity, and proof-of-reserves information. The response includes exchange details (`id`, `name`, `type`, jurisdiction), market share, trading pairs, native tokens, and trading volumes. Optional proof-of-reserves data covers reserve size, clean reserves, stablecoin percentage, and audit sources.\n\n**Pricing**\n- 1 credit\n- 1 credit for using the `include` parameter\n- 1 credit for each converter (except USD)\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "Exchanges",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "proofOfReserves"
+            ]
+          }
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "default": "en",
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "Locale",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "funds_list": {
+    "id": "funds_list",
+    "method": "GET",
+    "path": "/v2/funds",
+    "summary": "List of Funds and Investors with Key Metrics",
+    "description": "**Description**\n\nThis endpoint provides a sortable and filterable list of funds and investors with essential metrics. The response includes data such as id, name, tier, type, jurisdiction, portfolio size, the number of funding rounds, Retail ROI, and lead investments. Query parameters allow sorting by tier, funding rounds, portfolio size, Retail ROI, or lead investments, and filtering by fund type or tier.\n\n**Pricing**\n\nEach request costs 1 credit for up to 100 entries, with additional credits for larger queries or filter usage.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- 🛒 Available for purchase in: Basic\n- ❌ Not available in: Sandbox",
+    "tag": "Funds",
+    "query": [
+      {
+        "name": "tier",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        },
+        "description": "Filter by Foundation tier. Indicate the fund's shooting range number. Multiple values can be included simultaneously.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "type",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Angel Investor",
+              "Corporation",
+              "DAO",
+              "Exchange",
+              "Guild",
+              "Hedge Fund",
+              "Incubator",
+              "Venture"
+            ]
+          }
+        },
+        "description": "Filter by fund type. Multiple values can be included simultaneously.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "tier",
+          "enum": [
+            "tier",
+            "fundingRounds",
+            "leadInvestments",
+            "portfolio",
+            "retailRoi"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            200,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of currencies returned for a single query.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of currencies omitted from the response.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "funds_map": {
+    "id": "funds_map",
+    "method": "GET",
+    "path": "/v2/funds/map",
+    "summary": "Investor and Fund List(All)",
+    "description": "**Description**\n\nThis endpoint provides information and data about investors and funds, including `id`, `name`, `type`, and `tier`. The response delivers essential details for efficient identification and categorization.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Funds",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "funds_by_id": {
+    "id": "funds_by_id",
+    "method": "GET",
+    "path": "/v2/funds/{id}",
+    "summary": "Basic Metrics for a Specific Fund",
+    "description": "**Description**\n\nThis endpoint provides essential metrics for a specific investment fund or venture investor. It offers details such as the fund's `id`, `name`, `tier`, `type`, jurisdiction, portfolio size, and the number of funding rounds participated in. Additional data includes Retail ROI, the number of lead investments, the top 5 investments over the last 12 months, and the top 5 focus areas based on recent investments.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- 🛒 Available for purchase in: Basic\n- ❌ Not available in: Sandbox",
+    "tag": "Funds",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "funds_by_id_full_metadata": {
+    "id": "funds_by_id_full_metadata",
+    "method": "GET",
+    "path": "/v2/funds/{id}/full-metadata",
+    "summary": "Comprehensive Metrics and Investment Data for a Fund",
+    "description": "**Description**\n\nThis endpoint provides a detailed overview of a specific fund or investor, offering key metrics and insights. The response includes basic details (`id`, `name`, `tier`, `type`, jurisdiction, and description), portfolio size, funding rounds, Retail ROI, lead investments, and the top 5 recent investments. It also covers investment focus areas (top narratives and countries), details of recent investment rounds, preferred funding round sizes, and the top 5 funding round types based on recent activity.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Funds",
+    "query": [
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "default": "en",
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "Locale",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "funds_by_id_team": {
+    "id": "funds_by_id_team",
+    "method": "GET",
+    "path": "/v2/funds/{id}/team",
+    "summary": "Full Fund Team Details with Social Links",
+    "description": "**Description**\n\nThis endpoint provides detailed information about the team behind a specific fund, including each member's name, job title, description, and social media links.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Business\n- 🛒 Available for purchase in: Basic, Advanced, Pro\n- ❌ Not available in: Sandbox",
+    "tag": "Funds",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "global_list": {
+    "id": "global_list",
+    "method": "GET",
+    "path": "/v2/global",
+    "summary": "Retrieve Global Cryptocurrency Market Metrics",
+    "description": "**Description**\n\nThis endpoint provides key metrics for the overall cryptocurrency market. The response includes the total number of listed projects (`allCurrencies`), the number of actively traded tokens (`activeCurrencies`), and the total number of markets (`activeMarkets`). Additional data includes Bitcoin and Ethereum dominance percentages relative to the total market capitalization, investment activity compared to the 12-month average, and 24-hour spot trading volume. Both totalVolume24h and totalMarketCap are available in several fiat currencies, with USD as the default.\n\n**Pricing**\n- 1 credit.\n- 1 credit for each converter (except USD).\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Global",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "markets_list": {
+    "id": "markets_list",
+    "method": "GET",
+    "path": "/v2/markets",
+    "summary": "Retrieve List of Trading Pairs (Tickers) with Market Data",
+    "description": "**Description**This endpoint provides a list of trading pairs (tickers) across various exchanges, with options to filter by base currency, quoted currency, exchange, and exchange type. Query parameters allow sorting by 24-hour trading volume, setting pagination limits, and skipping entries. The response includes detailed information on the base and quoted currencies, the exchange where the pair is listed, and key trading data such as open, high, low, last prices, and bid/ask prices. Additionally, 24-hour trading volume is provided in both the base currency and USD.\n\n**Pricing**\n- 1 credit for every 100 tickers.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- 🛒 Available for purchase in: Basic\n- ❌ Not available in: Sandbox",
+    "tag": "Markets",
+    "query": [
+      {
+        "name": "baseCoinId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "id of the first listed token within a market pair.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "quoteCoinId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "id of the second listed token within a market pair.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "exchangeId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "id of the exchange where the market is listed.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "exchangeType",
+        "required": false,
+        "schema": {
+          "enum": [
+            "main",
+            "dex",
+            "other",
+            "futures"
+          ],
+          "type": "string"
+        },
+        "description": "Type of the exchange where the market is listed.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "volume24hUSD",
+          "enum": [
+            "volume24hUSD"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "DESC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            500,
+            1000
+          ],
+          "type": "number"
+        },
+        "description": "Number of markets returned for a single query.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of markets omitted from the response.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  }
+}

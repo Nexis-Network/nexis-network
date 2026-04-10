@@ -1,0 +1,444 @@
+@property --nex-liquid-glass-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nex-liquid-glass-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+@keyframes liquid-glass-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.buttonRoot {
+  --nex-liquid-glass-width: 280px;
+  --nex-liquid-glass-height: 68px;
+  --nex-liquid-glass-surface-padding-inline: 0;
+  --nex-liquid-glass-content-padding-inline: 1.75em;
+  --nex-liquid-glass-border-width: clamp(1px, 0.0625em, 4px);
+  --nex-liquid-glass-shadow-cutoff-fix: 2em;
+  --nex-liquid-glass-shadow-offset-top: calc(
+    var(--nex-liquid-glass-shadow-cutoff-fix) - 0.5em
+  );
+  --nex-liquid-glass-shadow-offset-left: calc(
+    var(--nex-liquid-glass-shadow-cutoff-fix) - 0.875em
+  );
+  --nex-liquid-glass-backdrop-blur: 2px;
+  --nex-liquid-glass-text-color: var(
+    --auth-liquid-glass-text-color,
+    #323232
+  );
+  --nex-liquid-glass-font-family: var(--font-liquid-glass, var(--font-sans));
+  --nex-liquid-glass-font-size: 18px;
+  --nex-liquid-glass-font-weight: 500;
+  --nex-liquid-glass-letter-spacing: -0.18px;
+  --nex-liquid-glass-content-blend-mode: normal;
+  --nex-liquid-glass-content-text-shadow: 0 0.05em 0.05em #0000000d;
+  --nex-liquid-glass-content-shine-display: block;
+  --nex-liquid-glass-surface-background: var(
+    --auth-liquid-glass-surface-background,
+    linear-gradient(-75deg, #ffffff0d, #fff3, #ffffff0d)
+  );
+  --nex-liquid-glass-surface-shadow: var(
+    --auth-liquid-glass-surface-shadow,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.25em 0.125em -0.125em #0003,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0 0 0 #fff
+  );
+  --nex-liquid-glass-surface-shadow-hover: var(
+    --auth-liquid-glass-surface-shadow-hover,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.15em 0.05em -0.1em #00000040,
+    0 0 0.05em 0.1em inset #ffffff80,
+    0 0 0 0 #fff
+  );
+  --nex-liquid-glass-surface-shadow-active: var(
+    --auth-liquid-glass-surface-shadow-active,
+    inset 0 0.125em 0.125em #0000000d,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.125em 0.125em -0.125em #0003,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0.225em 0.05em 0 #0000000d,
+    0 0.25em 0 0 #ffffffbf,
+    inset 0 0.25em 0.05em 0 #00000026
+  );
+  --nex-liquid-glass-border-background: var(
+    --auth-liquid-glass-border-background,
+    conic-gradient(
+      from var(--nex-liquid-glass-angle-1) at 50% 50%,
+      #00000080,
+      #0000 5% 40%,
+      #00000080 50%,
+      #0000 60% 95%,
+      #00000080
+    ),
+    linear-gradient(180deg, #ffffff80, #ffffff80)
+  );
+  --nex-liquid-glass-border-shadow: var(
+    --auth-liquid-glass-border-shadow,
+    inset 0 0 0 calc(var(--nex-liquid-glass-border-width) / 2) #ffffff80
+  );
+  --nex-liquid-glass-shine-background: var(
+    --auth-liquid-glass-shine-background,
+    linear-gradient(
+      var(--nex-liquid-glass-angle-2),
+      #fff0 0%,
+      #ffffff80 40% 50%,
+      #fff0 55%
+    )
+  );
+  --nex-liquid-glass-shadow-background: var(
+    --auth-liquid-glass-shadow-background,
+    linear-gradient(180deg, #0003, #0000001a)
+  );
+  position: relative;
+  display: inline-flex;
+  isolation: isolate;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 999vw;
+  background: transparent;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.enter {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(8px);
+  animation: liquid-glass-fade-in 1.2s ease-out 0.1s forwards;
+}
+
+.buttonSurface {
+  all: unset;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nex-liquid-glass-width);
+  height: var(--nex-liquid-glass-height);
+  padding-inline: var(--nex-liquid-glass-surface-padding-inline);
+  border-radius: 999vw;
+  background: var(--nex-liquid-glass-surface-background);
+  box-shadow: var(--nex-liquid-glass-surface-shadow);
+  -webkit-backdrop-filter: blur(var(--nex-liquid-glass-backdrop-blur));
+  backdrop-filter: blur(var(--nex-liquid-glass-backdrop-blur));
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    -webkit-backdrop-filter 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    backdrop-filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.buttonSurface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: calc(0% - var(--nex-liquid-glass-border-width) / 2);
+  left: calc(0% - var(--nex-liquid-glass-border-width) / 2);
+  z-index: 1;
+  box-sizing: border-box;
+  width: calc(100% + var(--nex-liquid-glass-border-width));
+  height: calc(100% + var(--nex-liquid-glass-border-width));
+  padding: var(--nex-liquid-glass-border-width);
+  border-radius: 999vw;
+  background: var(--nex-liquid-glass-border-background);
+  box-shadow: var(--nex-liquid-glass-border-shadow);
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    --nex-liquid-glass-angle-1 0.5s;
+}
+
+.buttonContent {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-inline: var(--nex-liquid-glass-content-padding-inline);
+  color: var(--nex-liquid-glass-text-color);
+  font-family: var(--nex-liquid-glass-font-family);
+  font-size: var(--nex-liquid-glass-font-size);
+  font-weight: var(--nex-liquid-glass-font-weight);
+  letter-spacing: var(--nex-liquid-glass-letter-spacing);
+  line-height: 1;
+  white-space: nowrap;
+  mix-blend-mode: var(--nex-liquid-glass-content-blend-mode);
+  text-shadow: var(--nex-liquid-glass-content-text-shadow);
+  user-select: none;
+  transition: text-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.buttonContent::after {
+  content: "";
+  position: absolute;
+  top: calc(0% + var(--nex-liquid-glass-border-width) / 2);
+  left: calc(0% + var(--nex-liquid-glass-border-width) / 2);
+  z-index: 1;
+  display: var(--nex-liquid-glass-content-shine-display);
+  width: calc(100% - var(--nex-liquid-glass-border-width));
+  height: calc(100% - var(--nex-liquid-glass-border-width));
+  border-radius: 999vw;
+  pointer-events: none;
+  background: var(--nex-liquid-glass-shine-background);
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  mix-blend-mode: screen;
+  transition:
+    background-position 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    --nex-liquid-glass-angle-2 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.buttonShadow {
+  position: absolute;
+  top: calc(0% - var(--nex-liquid-glass-shadow-cutoff-fix) / 2);
+  left: calc(0% - var(--nex-liquid-glass-shadow-cutoff-fix) / 2);
+  width: calc(100% + var(--nex-liquid-glass-shadow-cutoff-fix));
+  height: calc(100% + var(--nex-liquid-glass-shadow-cutoff-fix));
+  overflow: visible;
+  pointer-events: none;
+  filter: blur(clamp(2px, 0.125em, 12px));
+  transition: filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.buttonShadow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: var(--nex-liquid-glass-shadow-offset-top);
+  left: var(--nex-liquid-glass-shadow-offset-left);
+  box-sizing: border-box;
+  width: calc(100% - var(--nex-liquid-glass-shadow-cutoff-fix) - 0.25em);
+  height: calc(100% - var(--nex-liquid-glass-shadow-cutoff-fix) - 0.25em);
+  padding: 0.125em;
+  border-radius: 999vw;
+  background: var(--nex-liquid-glass-shadow-background);
+  opacity: 1;
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition:
+    top 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.buttonSurface:hover,
+.buttonSurface:focus-visible {
+  box-shadow: var(--nex-liquid-glass-surface-shadow-hover);
+  -webkit-backdrop-filter: blur(0.01em);
+  backdrop-filter: blur(0.01em);
+}
+
+.buttonSurface:hover::after,
+.buttonSurface:focus-visible::after {
+  --nex-liquid-glass-angle-1: -125deg;
+}
+
+.buttonSurface:hover .buttonContent,
+.buttonSurface:focus-visible .buttonContent {
+  text-shadow: 0.025em 0.025em 0.025em #0000000f;
+}
+
+.buttonSurface:hover .buttonContent::after,
+.buttonSurface:focus-visible .buttonContent::after {
+  background-position: 25%;
+}
+
+.buttonSurface:hover ~ .buttonShadow,
+.buttonSurface:focus-visible ~ .buttonShadow {
+  filter: blur(clamp(2px, 0.0625em, 6px));
+}
+
+.buttonSurface:hover ~ .buttonShadow::after,
+.buttonSurface:focus-visible ~ .buttonShadow::after {
+  top: calc(var(--nex-liquid-glass-shadow-cutoff-fix) - 0.875em);
+}
+
+.buttonSurface:active {
+  box-shadow: var(--nex-liquid-glass-surface-shadow-active);
+}
+
+.buttonSurface:active .buttonContent {
+  text-shadow: 0.025em 0.1em 0.05em #00000014;
+}
+
+.buttonSurface:active .buttonContent::after {
+  --nex-liquid-glass-angle-2: -15deg;
+  background-position: 50% 15%;
+}
+
+.buttonSurface:active ~ .buttonShadow {
+  filter: blur(clamp(2px, 0.125em, 12px));
+}
+
+.buttonSurface:active ~ .buttonShadow::after {
+  top: calc(var(--nex-liquid-glass-shadow-cutoff-fix) - 0.5em);
+  opacity: 0.75;
+}
+
+.buttonSurface:disabled,
+.buttonSurface[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.buttonSurface:focus-visible {
+  box-shadow: var(--nex-liquid-glass-surface-shadow-hover), 0 0 0 3px #1919191f;
+  outline: none;
+}
+
+.variantAnnouncement {
+  --nex-liquid-glass-width: auto;
+  --nex-liquid-glass-height: 32px;
+  --nex-liquid-glass-surface-padding-inline: 24px;
+  --nex-liquid-glass-content-padding-inline: 0;
+  --nex-liquid-glass-font-size: 12px;
+  --nex-liquid-glass-font-weight: 500;
+  --nex-liquid-glass-shadow-background: var(
+    --auth-liquid-glass-shadow-background,
+    linear-gradient(180deg, #0000001a, #0000000d)
+  );
+  --nex-liquid-glass-surface-shadow: var(
+    --auth-liquid-glass-surface-shadow,
+    inset 0 0.125em 0.125em #00000006,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.25em 0.125em -0.125em #0000001a,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0 0 0 #fff
+  );
+  --nex-liquid-glass-surface-shadow-hover: var(
+    --auth-liquid-glass-surface-shadow-hover,
+    inset 0 0.125em 0.125em #00000006,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.15em 0.05em -0.1em #00000026,
+    0 0 0.05em 0.1em inset #ffffff80,
+    0 0 0 0 #fff
+  );
+  --nex-liquid-glass-surface-shadow-active: var(
+    --auth-liquid-glass-surface-shadow-active,
+    inset 0 0.125em 0.125em #00000006,
+    inset 0 -0.125em 0.125em #ffffff80,
+    0 0.125em 0.125em -0.125em #0000001a,
+    0 0 0.1em 0.25em inset #fff3,
+    0 0.225em 0.05em 0 #0000000d,
+    0 0.25em 0 0 #ffffffbf,
+    inset 0 0.25em 0.05em 0 #00000026
+  );
+  --nex-liquid-glass-content-shine-display: none;
+}
+
+.variantCta {
+  --nex-liquid-glass-width: 280px;
+  --nex-liquid-glass-height: 68px;
+  --nex-liquid-glass-font-size: 18px;
+  --nex-liquid-glass-font-weight: 500;
+}
+
+.variantHeader {
+  --nex-liquid-glass-width: 126px;
+  --nex-liquid-glass-height: 40px;
+  --nex-liquid-glass-backdrop-blur: 4px;
+  --nex-liquid-glass-font-size: 14px;
+  --nex-liquid-glass-font-weight: 400;
+  --nex-liquid-glass-letter-spacing: -0.16px;
+  --nex-liquid-glass-text-color: #363636;
+  --nex-liquid-glass-content-blend-mode: luminosity;
+  --nex-liquid-glass-surface-background:
+    linear-gradient(-75deg, #ffffff0d, #fff3, #ffffff0d),
+    #f0f0f0b3;
+}
+
+.variantIcon {
+  --nex-liquid-glass-width: 40px;
+  --nex-liquid-glass-height: 40px;
+  --nex-liquid-glass-content-padding-inline: 0;
+  --nex-liquid-glass-font-size: 0;
+  --nex-liquid-glass-content-shine-display: none;
+}
+
+@media (min-width: 768px) {
+  .variantCta {
+    --nex-liquid-glass-width: 200px;
+  }
+
+  .variantHeader {
+    --nex-liquid-glass-width: 145px;
+    --nex-liquid-glass-height: 46px;
+    --nex-liquid-glass-font-size: 16px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .buttonContent::after,
+  .buttonSurface:active .buttonContent::after {
+    --nex-liquid-glass-angle-2: -45deg;
+  }
+
+  .buttonSurface::after,
+  .buttonSurface:hover::after,
+  .buttonSurface:active::after {
+    --nex-liquid-glass-angle-1: -75deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .buttonRoot,
+  .buttonSurface,
+  .buttonSurface::after,
+  .buttonContent,
+  .buttonContent::after,
+  .buttonShadow,
+  .buttonShadow::after {
+    transition: none;
+  }
+}

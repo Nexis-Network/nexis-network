@@ -1,0 +1,154 @@
+[
+  {
+    "title": "From Manual to Autonomous: Transforming Your DeFi Strategy",
+    "description": "A practical guide to evolving from manual DeFi operations to intelligent automation. Learn how to identify automation opportunities, implement gradually, and measure results.",
+    "slug": "manual-to-autonomous-defi-transformation",
+    "href": "manual-to-autonomous-defi-transformation",
+    "publishedAt": "2025-10-30T13:00:00.000Z",
+    "date": "2025-10-30",
+    "image": "",
+    "category": {
+      "title": "Use Cases",
+      "slug": "use-cases"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "The Future of DeFAI: Where AI Meets Decentralized Finance",
+    "description": "Explore the emerging intersection of artificial intelligence and decentralized finance. How AI agents are transforming DeFi protocols, creating new opportunities, and reshaping the financial landscape.",
+    "slug": "future-of-defai-ai-meets-defi",
+    "href": "future-of-defai-ai-meets-defi",
+    "publishedAt": "2025-10-29T09:00:00.000Z",
+    "date": "2025-10-29",
+    "image": "",
+    "category": {
+      "title": "DeFi Insights",
+      "slug": "defi-insights"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Nex-T1 Command Palette: Power User Tips & Tricks",
+    "description": "Master the advanced features of Nex-T1 with insider tips on shortcuts, automation patterns, and productivity hacks that elite traders use daily.",
+    "slug": "nex-t1-command-palette-power-user-tips",
+    "href": "nex-t1-command-palette-power-user-tips",
+    "publishedAt": "2025-10-28T11:00:00.000Z",
+    "date": "2025-10-28",
+    "image": "",
+    "category": {
+      "title": "Getting Started",
+      "slug": "getting-started"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Yield Farming with AI: Maximizing Returns with Nex-T1",
+    "description": "Complete guide to AI-powered yield farming. Learn how Nex-T1 finds optimal opportunities, manages impermanent loss, and automates position rebalancing across DeFi protocols.",
+    "slug": "yield-farming-with-ai-maximizing-returns",
+    "href": "yield-farming-with-ai-maximizing-returns",
+    "publishedAt": "2025-10-27T10:00:00.000Z",
+    "date": "2025-10-27",
+    "image": "",
+    "category": {
+      "title": "Use Cases",
+      "slug": "use-cases"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "DeFi Risk Management: How Nex-T1 Protects Your Portfolio",
+    "description": "Master risk management with AI-powered tools. Learn how Nex-T1 identifies portfolio risks, implements hedging strategies, and prevents costly mistakes in DeFi operations.",
+    "slug": "defi-risk-management-portfolio-protection",
+    "href": "defi-risk-management-portfolio-protection",
+    "publishedAt": "2025-10-26T09:30:00.000Z",
+    "date": "2025-10-26",
+    "image": "",
+    "category": {
+      "title": "DeFi Insights",
+      "slug": "defi-insights"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Building DeFi Trading Bots with Nex-T1 API",
+    "description": "Technical guide to building custom trading bots using the Nex-T1 API. From simple price alerts to sophisticated algorithmic trading systems with backtesting and risk management.",
+    "slug": "building-defi-trading-bots-nex-t1-api",
+    "href": "building-defi-trading-bots-nex-t1-api",
+    "publishedAt": "2025-10-25T13:00:00.000Z",
+    "date": "2025-10-25",
+    "image": "",
+    "category": {
+      "title": "Developer Resources",
+      "slug": "developer-resources"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "NFTs and Digital Assets: Nex-T1's Web3 Portfolio Management",
+    "description": "Beyond DeFi—managing NFTs, digital collectibles, and Web3 assets with AI. Track valuations, discover opportunities, and optimize your complete digital portfolio.",
+    "slug": "nfts-digital-assets-web3-portfolio-management",
+    "href": "nfts-digital-assets-web3-portfolio-management",
+    "publishedAt": "2025-10-24T11:00:00.000Z",
+    "date": "2025-10-24",
+    "image": "",
+    "category": {
+      "title": "Use Cases",
+      "slug": "use-cases"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "DAO Operations and Governance with Nex-T1",
+    "description": "How AI transforms DAO participation and governance. From analyzing proposals to automating treasury management and coordinating community votes.",
+    "slug": "dao-operations-governance-with-nex-t1",
+    "href": "dao-operations-governance-with-nex-t1",
+    "publishedAt": "2025-10-23T10:00:00.000Z",
+    "date": "2025-10-23",
+    "image": "",
+    "category": {
+      "title": "Use Cases",
+      "slug": "use-cases"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  }
+]

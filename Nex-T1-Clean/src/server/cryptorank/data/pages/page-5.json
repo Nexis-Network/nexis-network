@@ -1,0 +1,230 @@
+{
+  "launchpads_by_id": {
+    "id": "launchpads_by_id",
+    "method": "GET",
+    "path": "/v2/launchpads/{id}",
+    "summary": "Basic metrics for specific launchpad",
+    "description": "**Description**\n\nThis endpoint provides basic metrics for specific launchpad. It offers details such as the launchpad's `id`, `slug`, `name`, `type`, `rank`, `logo`, `currentROI`, `projectsCount`, `topProjects1Y`, `totalRaised`, `TopCategory1Y`.\n\n**Pricing**\n- Each request costs 1 credit.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "Launchpads",
+    "query": [
+      {
+        "name": "timeframe",
+        "required": false,
+        "schema": {
+          "default": "1Y",
+          "enum": [
+            "1M",
+            "3M",
+            "6M",
+            "1Y",
+            "3Y",
+            "ALL"
+          ],
+          "type": "string"
+        },
+        "description": "Required timeframe for data calculation",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "launchpads_by_id_full_metadata": {
+    "id": "launchpads_by_id_full_metadata",
+    "method": "GET",
+    "path": "/v2/launchpads/{id}/full-metadata",
+    "summary": "Comprehensive Metrics for Specific Launchpad",
+    "description": "**Description**\n\nThis endpoint provides Comprehensive Metrics for Specific Launchpad. It offers details such as the launchpad's `id`, `slug`, `name`, `type`, `rank`, `logo`, `links`, `currentROI`, `athROI`, `projectsCount`, `topProjects1Y`, `avgRaise`, `totalRaised`, `popularCategories`, `blockchains`.\n\nThe `timeframe` parameter is required for the request. Available values:\n- `1M` – 1 month;\n- `3M` – 3 months;\n- `6M` – 6 months;\n- `1Y` – 1 year;\n- `3Y` – 3 years;\n- `All` – full data history.\n\n**Pricing**\n- Each request costs 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- ❌ Not available in: Sandbox, Basic, Advanced",
+    "tag": "Launchpads",
+    "query": [
+      {
+        "name": "timeframe",
+        "required": false,
+        "schema": {
+          "default": "1Y",
+          "enum": [
+            "1M",
+            "3M",
+            "6M",
+            "1Y",
+            "3Y",
+            "ALL"
+          ],
+          "type": "string"
+        },
+        "description": "Required timeframe for data calculation",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "news_map": {
+    "id": "news_map",
+    "method": "GET",
+    "path": "/v2/news/map",
+    "summary": "News Categories and Sources Mapping",
+    "description": "**Description**\n\nThis endpoint returns the full list of available news categories and news sources with their IDs. These IDs can be used as filters in the `/news/feed` endpoint (parameters `tagId` and `sources`). Each item includes identifiers, names, and additional metadata for correct filtering and referencing.\n\n**Pricing**\n- Each request costs 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "News",
+    "query": [
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "news_feed": {
+    "id": "news_feed",
+    "method": "GET",
+    "path": "/v2/news/feed",
+    "summary": "News Feed with Filtering Options",
+    "description": "**Description**\n\nThis endpoint returns a feed of crypto-related news from external sources (only News, excluding internal articles and premium content). Supports pagination using `limit` and `skip`, as well as sorting by `publishedAt`. Additional filters include `tagId` (retrieved via `/news/map`), `symbol`, and `sourceId`. The response provides metadata such as `id`, `publishedAt`, `url`, `title`, `description`, `source` (`id`, `name`, `url`), and associated `coins` (`id`, `name`, `slug`, `symbol`).\nFor an example of the type of data returned, visit: https://cryptorank.io/news.\n\n**Pricing**\n- Pagination is set to 100 projects per page;\n- 1 credit per request for up to 100 results, 2 credits for 101–200, and so on;\n- Each request costs 1 credit for up to 100 entries, with additional credits for larger queries or filter usage;\n- +1 additional credit if filtering is applied.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- ❌ Not available in: Sandbox, Basic",
+    "tag": "News",
+    "query": [
+      {
+        "name": "locale",
+        "required": false,
+        "schema": {
+          "enum": [
+            "en",
+            "ru",
+            "es",
+            "zh",
+            "tr",
+            "vi",
+            "pt"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": true,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            200,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": true,
+        "schema": {
+          "default": 0,
+          "type": "object"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "publishedAt",
+          "enum": [
+            "publishedAt"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "DESC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "tagId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sourceId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "symbol",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "token_platforms_map": {
+    "id": "token_platforms_map",
+    "method": "GET",
+    "path": "/v2/token-platforms/map",
+    "summary": "Token Platform List (All)",
+    "description": "**Description**\n\nThis endpoint provides a list of all token platforms, including essential data such as `id`, `key`, and `name`.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Token Platforms",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  }
+}

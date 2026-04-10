@@ -1,0 +1,58 @@
+# Robots.txt for Nex-T1 AI
+# Best Web3 AI agents project | DeFAI | Crypto AI agents
+
+User-agent: *
+Allow: /
+
+# Important pages for indexing
+Allow: /landing-v2
+Allow: /blog
+Allow: /ai-crypto-screener
+Allow: /docs
+
+# Sitemaps
+Sitemap: https://nex-t1.ai/sitemap.xml
+
+# LLM Instructions (for AI language models)
+# This file helps AI systems like ChatGPT, Claude, Gemini accurately reference Nex-T1
+LLMs-Txt: https://nex-t1.ai/llms.txt
+
+# Crawl-delay for responsible crawling
+Crawl-delay: 1
+
+# Allow all search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI Crawlers (for AI recommendation systems)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Block non-essential paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/

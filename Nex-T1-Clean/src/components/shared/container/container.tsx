@@ -1,0 +1,56 @@
+import clsx from "clsx";
+import { createElement, forwardRef } from "react";
+import type { ElementType, HTMLAttributes, ReactNode } from "react";
+
+const styles = {
+  size: {
+    lg: "max-w-[1760px] 3xl:max-w-[1472px] 2xl:px-10",
+    md: "max-w-[1760px] 3xl:max-w-[1472px] 2xl:max-w-[1216px] xl:max-w-[936px]",
+    medium: "max-w-[1472px] 2xl:px-10",
+    sm: "max-w-[1460px] 2xl:max-w-[1216px] xl:max-w-[936px]",
+    xs: "max-w-[860px]",
+    xxs: "max-w-[704px] md:px-5",
+    1600: "max-w-[1600px] px-8",
+    1472: "max-w-[1536px] px-8",
+    1408: "max-w-[1472px] px-8",
+    1344: "max-w-[1408px] px-8",
+    1220: "max-w-[1220px] xl:px-8",
+    1216: "max-w-[1216px] xl:px-8",
+    1152: "max-w-6xl",
+    1100: "max-w-[1100px]",
+    960: "max-w-[960px] md:px-5",
+    832: "max-w-[832px]",
+    768: "max-w-3xl",
+    640: "max-w-[640px]",
+    576: "max-w-[576px]",
+  },
+} as const;
+
+type ContainerSize = keyof typeof styles.size;
+
+type ContainerProps = HTMLAttributes<HTMLElement> & {
+  as?: ElementType;
+  children: ReactNode;
+  size: ContainerSize;
+};
+
+const Container = forwardRef<HTMLElement, ContainerProps>(function Container(
+  { className, size, children, as: Tag = "div", ...otherProps },
+  ref,
+) {
+  return createElement(
+    Tag,
+    {
+      className: clsx(
+        "relative mx-auto lg:max-w-none lg:px-8 md:px-5",
+        styles.size[size],
+        className,
+      ),
+      ...otherProps,
+      ref,
+    },
+    children,
+  );
+});
+
+export default Container;

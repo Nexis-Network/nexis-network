@@ -1,0 +1,96 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": false,
+    "target": "ES2022",
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/hooks/*": [
+        "./src/lib/hooks/*",
+        "./src/hooks/*"
+      ],
+      "components/*": [
+        "./src/components/*"
+      ],
+      "hooks/*": [
+        "./src/hooks/*"
+      ],
+      "lib/*": [
+        "./src/lib/*"
+      ],
+      "constants/*": [
+        "./src/constants/*"
+      ],
+      "icons/*": [
+        "./src/icons/*"
+      ],
+      "utils/*": [
+        "./src/utils/*"
+      ],
+      "@/modules/ai-agent-multi-step-tools/*": [
+        "./src/modules/ai-agent-multi-step-tools/*"
+      ],
+      "@/modules/ai-agent-evaluator-optimizer-tools/*": [
+        "./src/modules/ai-agent-evaluator-optimizer-tools/*"
+      ],
+      "@/domain/*": [
+        "./src/modules/*"
+      ],
+      "@/goat_plan_min.json": [
+        "./goat_plan_min.json"
+      ],
+      "@/goat_command_menu_min.json": [
+        "./goat_command_menu_min.json"
+      ],
+      "@/tools.json": [
+        "./tools.json"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "next-env.d.ts",
+    "types/**/*.d.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    ".next-dev/types/**/*.ts",
+    ".next-dev/dev/types/**/*.ts",
+    ".next-dev-codex/types/**/*.ts",
+    ".next-dev-codex/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "extension",
+    "scripts",
+    "src/scripts",
+    "smart-wallets/**",
+    "tee-runtime/**",
+    "tests/**",
+    "test-results/**",
+    "supabase/functions/**"
+  ]
+}

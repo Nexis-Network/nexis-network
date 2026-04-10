@@ -1,0 +1,504 @@
+{
+  "currencies_by_id": {
+    "id": "currencies_by_id",
+    "method": "GET",
+    "path": "/v2/currencies/{id}",
+    "summary": "Detailed Cryptocurrency Data by ID",
+    "description": "**Description**\n\nThis endpoint provides detailed information about a specific cryptocurrency, including its unique id, slug, symbol, name, rank, category, and asset type (fiat, token, coin, or no token). Additional data includes supply metrics (total, max, and circulating supply), price change (24 hours), trading volume, market capitalization, and fully diluted valuation. Historical price data such as all-time highs and lows are also included. The response can also indicate if the cryptocurrency is traded, has Funding Rounds, Vesting, Token Sale, contracts (only two addresses are returned; full list is available via `v2/currencies/:id/full-metadata`) and more.\n\n**Pricing**\n- 1 credit.\n- 1 credit for the the `sparkline7d`.\n- 1 credit for each converter (except USD).\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sparkline7d"
+            ]
+          }
+        },
+        "description": "`sparkline7d` value can be included in the response via the `include` option.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_full_metadata": {
+    "id": "currencies_by_id_full_metadata",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/full-metadata",
+    "summary": "Full Cryptocurrency Metadata by ID (Available on Paid Plans)",
+    "description": "**Description**\n\nThis endpoint provides a comprehensive set of data for a specific cryptocurrency, including detailed information such as `id`, `slug`, `symbol`, `name`, asset `type`, `rank`, `category`, `description`, supply metrics, and extended price change data (24h, 7d, 30d, 3m, 6m). The response includes additional fields like all contract addresses, team and fund details, next token unlock information, public sale ROI, volume change percentages, and market cap dominance. This endpoint is only available for users on paid plans.\n\n**Pricing**\n- 1 credit.\n- 1 credit for the the `sparkline7d`.\n- 1 credit for each converter (except USD).\n\n### Access & Availability\n- ✅ Included in: Basic, Advanced, Pro, Business\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sparkline7d"
+            ]
+          }
+        },
+        "description": "`sparkline7d` value can be included in the response via the `include` option.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_funding_rounds": {
+    "id": "currencies_by_id_funding_rounds",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/funding-rounds",
+    "summary": "Funding rounds by cryptocurrency ID",
+    "description": "**Description**\n\nThis endpoint provides detailed information about the funding rounds of a specific cryptocurrency. It includes data such as the funding round stage, announcement date, amount raised, project valuation, token price at the round, tokens for sale, and allocation percentage relative to max supply. It also calculates the current ROI and ATH ROI based on the token's current and all-time-high prices. Additionally, the endpoint returns information about the funds and investors who participated in the round.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_historical": {
+    "id": "currencies_by_id_historical",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/historical",
+    "summary": "Single Cryptocurrency Aggregated Historical Data",
+    "description": "**Description**\n\nRetrieves aggregated historical data (daily, weekly, or monthly) for a single cryptocurrency, including open/high/low/close prices, trading volume, market capitalization, and circulating supply at the end of each period. Also provides percentage changes for key metrics (price, volume, market cap, circulating supply) compared to the previous segment.\n\n**Pricing**\n- 1 credit for each request up to 20 items, with any excess rounded up (e.g., 21-40 items will cost 2 credits).\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- 🛒 Available for purchase in: Basic\n- ❌ Not available in: Sandbox",
+    "tag": "Historical Data",
+    "query": [
+      {
+        "name": "startDate",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The earliest date to retrieve data for (e.g., `2024-11-01`).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "endDate",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The latest date to retrieve data for (e.g., `2025-02-11`). Defaults to “today” if not specified.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "interval",
+        "required": false,
+        "schema": {
+          "default": "day",
+          "enum": [
+            "day",
+            "week",
+            "month"
+          ],
+          "type": "string"
+        },
+        "description": "The granularity of each returned data point: daily, weekly, or monthly.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 20,
+          "enum": [
+            20,
+            50,
+            100
+          ],
+          "type": "number"
+        },
+        "description": "The number of data points returned per request. Only these fixed values are allowed.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "The index at which to start returning data points (useful for pagination).",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_public_sales": {
+    "id": "currencies_by_id_public_sales",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/public-sales",
+    "summary": "Public Token Sale Data by Cryptocurrency ID",
+    "description": "**Description**\n\nThis endpoint provides detailed information on public token sales for a specific cryptocurrency. It includes data such as the total amount raised from public and private rounds, public sale-specific amounts, and detailed information for each crowdsale. Each crowdsale entry includes the sale type, status (Past, Active, or Upcoming), start and end dates, tokens for sale, token price, amount raised, allocation of supply, current ROI, ATH ROI, and information about the launchpad where the sale was conducted.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_sparkline": {
+    "id": "currencies_by_id_sparkline",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/sparkline",
+    "summary": "Data for Price and Volume Charts",
+    "description": "**Description**\n\nThis endpoint provides data points for constructing a price or trading volume chart for a specific cryptocurrency. The interval between data points varies depending on the user’s subscription plan:\n- _Basic:_ Up to 30 days with 5-minute, 15-minute, or 1-hour intervals; up to 1 year with 1-day intervals\n- _Advanced:_ Up to 30 days with 5-minute, 15-minute, or 1-hour intervals; up to 2 years with 1-day intervals\n- _Pro:_ Up to 90 days with 5-minute, 15-minute, or 1-hour intervals; up to 5 years with 1-day intervals\n- _Business:_ Up to 1 year with 5-minute, 15-minute, or 1-hour intervals; full historical data with 1-day intervals\n\nQuery parameters allow specifying the time range (`from`, `to`), interval (`5m`, `15m`, `1h`, `1d`), and sorting preferences. The response includes data such as the date, price, and trading volume at each specified point in time. The number of data points returned can be controlled by the limit and skip parameters.\n\n**Pricing**\n- 1 credit for 100 points.\n- 1 credit for each converter (except USD).\n\n### Access & Availability\n- ✅ Included in: Basic, Advanced, Pro, Business\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "from",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Start date of the interval.\n\nAccepts an ISO 8601 date string (e.g., \"2024-01-01T00:00:00Z\") or a Unix timestamp (milliseconds).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "to",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "End date of the interval.\n\nAccepts an ISO 8601 date string (e.g., \"2024-12-31T23:59:59Z\") or a Unix timestamp (milliseconds).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "interval",
+        "required": false,
+        "schema": {
+          "default": "1d",
+          "enum": [
+            "5m",
+            "15m",
+            "1h",
+            "1d"
+          ],
+          "type": "string"
+        },
+        "description": "Time interval between two points of data.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "date",
+          "enum": [
+            "date"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            500,
+            1000
+          ],
+          "type": "number"
+        },
+        "description": "Number of points returned for a single query.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of points omitted from the response.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_team": {
+    "id": "currencies_by_id_team",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/team",
+    "summary": "Comprehensive Team Details with Social Links",
+    "description": "**Description**\n\nThis endpoint provides comprehensive information about the team behind a cryptocurrency project, including each member's name, job title, description, and social media links. Unlike the `currencies/:id/full-metadata` endpoint, which returns only the top 3 team members based on priority, this endpoint delivers the full list of team members.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_vesting": {
+    "id": "currencies_by_id_vesting",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/vesting",
+    "summary": "Token Unlock and Allocation Data for Cryptocurrency",
+    "description": "**Description**\n\nThis endpoint provides comprehensive token unlock and allocation data for a specific cryptocurrency. The response includes general project information, such as lifecycle stage, symbol, name, type, and supply metrics. Key unlock data covers the total unlocked and locked tokens, upcoming unlocks, unlock start and end dates, and allocation-specific details, including unlock frequency, allocation duration, and TGE details. Allocation information is further detailed with specifics on allocation names, tokens allocated, unlock types, and dates of the next unlocks.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "currencies_by_id_vesting_chart": {
+    "id": "currencies_by_id_vesting_chart",
+    "method": "GET",
+    "path": "/v2/currencies/{id}/vesting/chart",
+    "summary": "Token Unlock Chart and Distribution calendar",
+    "description": "**Description**\n\nThis endpoint provides data for building both a token unlock graph and a distribution calendar for a specific cryptocurrency. Depending on the user’s subscription plan, data points are available in daily, weekly, or monthly intervals. The response includes details such as total supply, max supply, listing date, vesting start and end dates, unlock dates, TGE indicators, and both percentage and absolute values of unlocked tokens. Additional fields provide cumulative unlock data for each allocation and untracked allocation information, enabling comprehensive visualization of token distribution over time.\n\n**Pricing**\n- 1 credit per 200 points.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "interval",
+        "required": true,
+        "schema": {
+          "enum": [
+            "1d",
+            "1w",
+            "1m"
+          ],
+          "type": "string"
+        },
+        "description": "Sampling interval for the vesting chart data (1d, 1w, or 1m).",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [
+      {
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Unique numeric identifier"
+      }
+    ],
+    "credits": null
+  },
+  "exchanges_list": {
+    "id": "exchanges_list",
+    "method": "GET",
+    "path": "/v2/exchanges",
+    "summary": "List of Exchanges with Key Metrics",
+    "description": "**Description**\n\nProvides a sortable and filterable list of exchanges, including key metrics such as `id`, `name`, `type`, market share, number of trading pairs, jurisdiction, and 24-hour volumes (adjusted and reported). Additional fields like 24-hour volume change can be included in the response.\n\n**Pricing**\n- 1 credit for each request up to 100 items, with any excess rounded up (e.g., 101-200 items will cost 2 credits).\n- 1 credit for each applied filter.\n- 1 credit for using the `include` parameter.\n- 1 credit for each converter (except USD).\n\n### Access & Availability\n- ✅ Included in: Basic, Advanced, Pro, Business\n- ❌ Not available in: Sandbox",
+    "tag": "Exchanges",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "adjustedVolume24hPercentChange"
+            ]
+          }
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "type",
+        "required": false,
+        "schema": {
+          "enum": [
+            "CEX",
+            "DEX",
+            "Futures"
+          ],
+          "type": "string"
+        },
+        "description": "Exchange Type",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "adjustedVolume24h",
+          "enum": [
+            "adjustedVolume24h",
+            "reportedVolume2h"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "DESC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  }
+}

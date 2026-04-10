@@ -1,0 +1,729 @@
+{
+  "currencies_list": {
+    "id": "currencies_list",
+    "method": "GET",
+    "path": "/v2/currencies",
+    "summary": "List of Traded Cryptocurrencies with Market Data",
+    "description": "**Description**\n\nThis endpoint returns a list of cryptocurrencies sorted by `rank`, `marketCap`, or `volume24h`. Only cryptocurrencies in the `TRADED` stage are included. Query parameters allow customization of the response, including the number of currencies returned (`limit`), sorting direction (`sortDirection`), and filtering by category (`categoryId`). The `categoryId` can be retrieved using the `v2/currencies/categories` endpoint. Additionally, the `include` parameter allows optional fields such as `percentChange` and `sparkline7d` to be included. Multiple values can be specified. For an example of the type of data returned, visit: [https://cryptorank.io/all-coins-list](https://cryptorank.io/all-coins-list).\n\n**Pricing**\n- 1 credit for each request up to 100 items, with any excess rounded up (e.g., 101-200 items will cost 2 credits).\n- 1 credit for the `sparkline7d`.\n- 1 credit for the `percentChange`.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "fiat",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Specifies the fiat currency ticker (e.g., EUR, RUB) for value conversion in the response. If not specified, the values default to USD",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "categoryId",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "Category to filter by. Full list of categories can be accessed with this endpoint: `v2/currencies/categories`.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "percentChange",
+              "sparkline7d"
+            ]
+          }
+        },
+        "description": "`percentChange`, `sparkline7d` values can be included in the response via the `include` option. Multiple values can be included simultaneously",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "symbol",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Filter by cryptocurrency symbol(s). Accepts a single symbol or a list of up to 20 symbols separated by commas. Returns a list of cryptocurrencies that match any of the specified symbols. Example: `symbol=ETH,SOL,AVAX` → Returns all cryptocurrencies with the symbols ETH, SOL, or AVAX.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "marketCapMin",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "marketCapMax",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "volume24hBaseMin",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "volume24hBaseMax",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "description": "",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "rank",
+          "enum": [
+            "marketCap",
+            "percentChange24h",
+            "rank",
+            "volume24h"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            500,
+            1000
+          ],
+          "type": "number"
+        },
+        "description": "Number of currencies returned for a single query",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of currencies omitted from the response",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_categories": {
+    "id": "currencies_categories",
+    "method": "GET",
+    "path": "/v2/currencies/categories",
+    "summary": "List of categories",
+    "description": "**Description**\n\nThis endpoint provides a list of cryptocurrency categories, including the category name, `id`, and the number of cryptocurrencies in each category. This data can be used to filter cryptocurrencies by category in other endpoints, such as `v2/currencies`.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_fiat": {
+    "id": "currencies_fiat",
+    "method": "GET",
+    "path": "/v2/currencies/fiat",
+    "summary": "List All Fiat Currencies",
+    "description": "**Description**\n\nThis endpoint returns a list of all available fiat currencies, including their numeric (ISO) code, alphabetical code (`symbol`), typographical symbol (sign), and full currency name. You can optionally filter the list by specifying a symbol parameter (e.g., `symbol=USD`) to retrieve only currencies matching that code. If no filter is provided, all fiat currencies are returned.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_funding_rounds": {
+    "id": "currencies_funding_rounds",
+    "method": "GET",
+    "path": "/v2/currencies/funding-rounds",
+    "summary": "List of Funding Rounds for Crypto Projects",
+    "description": "**Description**\n\nThis endpoint returns a list of funding rounds across various cryptocurrencies. Query parameters allow filtering by the life cycle stage, funding round stage, category, tags, and participating funds. Results can be sorted by date or raise in either ascending or descending order. Each funding round entry includes details such as the project’s id, slug, symbol, name, asset type, category, tags, and associated logos. Additional information about the funding round, including stage, announcement date, raise amount, valuation, and participating funds.\n\n**Pricing**\n- 1 credit for every 100 rounds.\n- 1 credit for each applied filter.\n\n### Access & Availability\n- ✅ Included in: Business\n- 🛒 Available for purchase in: Basic, Advanced, Pro\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "categoryIds",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": "Unique numeric identifier of the category (full list of categories can be accessed with this endpoint: `v2/currencies/categories`).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "fundIds",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": "Unique numeric identifier of the Investors and Funds associated with this funding round.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "lifeCycles",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "scheduled",
+              "funding",
+              "crowdsale",
+              "traded",
+              "inactive"
+            ]
+          }
+        },
+        "description": "Life cycle stage of the project.\n- `scheduled` means that the project has no funding rounds or public token sales and has only possible plans to launch a token;\n- `funding` means that the project conducts private fundraising rounds and has not launched a token yet;\n- `crowdsale` means that the project conducts public fundraising rounds and has not launched a token yet;\n- `traded` means that the project has launched token and that token is being traded on exchanges;\n- `inactive` means that the token has been traded before, but there is no current data about its price.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "stages",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ANGEL",
+              "Debt Financing",
+              "Extended Pre-Seed",
+              "Extended Seed",
+              "Extended Series A",
+              "Extended Series B",
+              "Extended Series C",
+              "Extended Series D",
+              "FUNDING ROUND",
+              "Grant",
+              "IPO",
+              "M&A",
+              "OTC Purchase",
+              "PIPE",
+              "Post-IPO",
+              "Post-IPO Debt",
+              "PRESALE",
+              "PRE SEED",
+              "Pre-Series A",
+              "Pre-Series B",
+              "Private Token Sale",
+              "SEED",
+              "SERIES A",
+              "SERIES B",
+              "SERIES C",
+              "SERIES D",
+              "Series E",
+              "Series F",
+              "Series G",
+              "Series H",
+              "STRATEGIC",
+              "Treasury Diversification",
+              "Undisclosed",
+              "Incubation",
+              "KOL"
+            ]
+          }
+        },
+        "description": "Funding round stage.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "tagIds",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": "Unique numeric identifier of tags associated with the token (full list of tags can be accessed with this endpoint: `v2/currencies/tags`).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "date",
+          "enum": [
+            "date",
+            "raise"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "DESC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of funding rounds returned for a single query.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of funding rounds omitted from the response.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_historical": {
+    "id": "currencies_historical",
+    "method": "GET",
+    "path": "/v2/currencies/historical",
+    "summary": "Historical Cryptocurrency Market Data",
+    "description": "**Description**\n\nUse this endpoint to retrieve a snapshot of historical market data for cryptocurrencies at a specific point in time, including price, market capitalization, circulating supply, 24-hour trading volume, and more. Results can be filtered, sorted, and paginated.\n\n**Pricing**\n- *1 credit* for each request up to 50 items, with any excess rounded up (e.g., 51-100 items will cost 2 credits).\n- *+1 credit* for using the id parameter.\n\n### Access & Availability\n- ✅ Included in: Advanced, Pro, Business\n- 🛒 Available for purchase in: Basic\n- ❌ Not available in: Sandbox",
+    "tag": "Historical Data",
+    "query": [
+      {
+        "name": "time",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Date in ISO8601 format, indicating the historical point in time for which the data is retrieved.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "id",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": "List of currency IDs to filter by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "state",
+        "required": false,
+        "schema": {
+          "enum": [
+            "active",
+            "inactive"
+          ],
+          "type": "string"
+        },
+        "description": "Filter results by currency state.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "rank",
+          "enum": [
+            "id",
+            "name",
+            "percentChange24hUSD",
+            "price",
+            "rank",
+            "volume24hUSD"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "ASC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 50,
+          "enum": [
+            50,
+            100,
+            200
+          ],
+          "type": "number"
+        },
+        "description": "Maximum number of results per request (pagination).",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Starting index for pagination (e.g., `skip=100` would skip the first 100 results).",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_map": {
+    "id": "currencies_map",
+    "method": "GET",
+    "path": "/v2/currencies/map",
+    "summary": "Cryptocurrency List (All)",
+    "description": "**Description**\n\nThis endpoint provides a list of all cryptocurrencies, including essential data such as `id`, `symbol`, and `name`. The optional `include` parameter allows for additional data fields, such as `lifeCycle`, `rank`, and `type`. Multiple values can be included simultaneously by specifying them in the request.\n\n**Pricing**\n- 1 credit.\n- 1 credit for using the `include` parameter.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "lifeCycle",
+              "rank",
+              "type"
+            ]
+          }
+        },
+        "description": "`lifeCycle`, `rank`, `type` values can be included in the response via the `include` option. Multiple values can be included simultaneously",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_public_sales": {
+    "id": "currencies_public_sales",
+    "method": "GET",
+    "path": "/v2/currencies/public-sales",
+    "summary": "List of Public Token Sales (IDO/ICO/IEO)",
+    "description": "**Description**\n\nThis endpoint returns a list of public token sales (IDO/ICO/IEO) for various cryptocurrency projects. The query parameters allow filtering by sale status (`active`, `past`, `upcoming`), sorting by start or end dates, and filtering by launchpads or trading status. Each entry includes project details such as `id`, `slug`, `symbol`, `name`, type of asset, category, rank, price, initial market capitalization, total and circulating supply, and fully diluted valuation. Detailed information about specific token sales is also provided, including sale type, status, start and end dates, tokens for sale, token price, funds raised, and launchpad information.\n\n**Pricing**\n- 1 credit for every 100 token sales.\n- 1 credit for each applied filter.\n\n### Access & Availability\n- ✅ Included in: Business\n- 🛒 Available for purchase in: Basic, Advanced, Pro\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "crowdsaleStatus",
+        "required": false,
+        "schema": {
+          "enum": [
+            "past",
+            "active",
+            "upcoming"
+          ],
+          "type": "string"
+        },
+        "description": "Filters public sale rounds by their current status. Possible values are:\n- `active`: Ongoing token sales.\n- `past`: Completed token sales.\n- `upcoming`: Scheduled token sales that haven’t started yet.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "isTraded",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "True if the project is being traded on any supported exchange.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "launchpadIds",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": "Unique numeric identifier of the Launchpad associated with this public sale round.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "default": "startDate",
+          "enum": [
+            "startDate",
+            "endDate"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "default": "DESC",
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of public sale rounds (IDO/ICO/IEO) returned for a single query.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of public sale rounds omitted from the response.",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_tags": {
+    "id": "currencies_tags",
+    "method": "GET",
+    "path": "/v2/currencies/tags",
+    "summary": "List of Tags",
+    "description": "**Description**\n\nThis endpoint provides a list of cryptocurrency tags, including the tag name, `id`, and the number of cryptocurrencies associated with each tag. This data can be used to filter cryptocurrencies by tags in other endpoints.\n\n**Pricing**\n- 1 credit.\n\n### Access & Availability\n- ✅ Included in: Sandbox, Basic, Advanced, Pro, Business",
+    "tag": "Currencies",
+    "query": [],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_token_unlock": {
+    "id": "currencies_token_unlock",
+    "method": "GET",
+    "path": "/v2/currencies/token-unlock",
+    "summary": "List of Cryptocurrencies with Upcoming Token Unlocks",
+    "description": "**Description**\n\nThis endpoint returns a list of cryptocurrencies that have upcoming token unlock events. Each cryptocurrency entry includes data such as its `id`, `lifeCycle`, `slug`, `symbol`, `name`, asset type, rank, supply metrics (total, max, circulating), and details about the upcoming unlock, including `nextUnlockValue`, `nextUnlockDate`, and `nextUnlockOfCirculating`. The endpoint also provides the ability to filter and sort results by unlock date, unlock percentage of supply, or market capitalization. Small unlocks can be hidden by setting the `hideSmallUnlocks` parameter to true. Results are limited to 300 cryptocurrencies per query, with pagination options.\n\n**Pricing**\n- 1 credit per 100 currencies.\n\n### Access & Availability\n- ✅ Included in: Pro, Business\n- 🛒 Available for purchase in: Basic, Advanced\n- ❌ Not available in: Sandbox",
+    "tag": "Currencies",
+    "query": [
+      {
+        "name": "hideSmallUnlocks",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Hide cryptocurrencies where the size of the upcoming token unlock is less than 1% of the market capitalization (`marketCap`)",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortBy",
+        "required": false,
+        "schema": {
+          "enum": [
+            "nextUnlockDate",
+            "nextUnlockOfCirculating",
+            "nextUnlockOfSupply"
+          ],
+          "type": "string"
+        },
+        "description": "Value to sort by",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "sortDirection",
+        "required": false,
+        "schema": {
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "description": "Direction of sorting",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 100,
+          "enum": [
+            100,
+            300
+          ],
+          "type": "number"
+        },
+        "description": "Number of currencies returned for a single query",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "default": 0,
+          "type": "number"
+        },
+        "description": "Number of currencies omitted from the response",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  },
+  "currencies_search": {
+    "id": "currencies_search",
+    "method": "GET",
+    "path": "/v2/currencies/search",
+    "summary": "Search for Cryptocurrency by Contract Address or Symbol",
+    "description": "**Description**This endpoint provides a quick way to retrieve the cryptocurrency ID and basic information based on either a contract address or a cryptocurrency symbol.  Optional filters include blockchain network (keyBlockchain) and type (coin or token).  The include parameter allows fetching additional fields, such as vesting data, funding rounds, launchpools, crowdsales, and more. Multiple values can be included simultaneously.\n\n**Pricing**\n- 1 credit.\n- +1 credit for using the include parameter.\n\n### Access & Availability\n- ✅ Included in: Basic, Advanced, Pro, Business\n- ❌ Not available in: Sandbox",
+    "tag": "General",
+    "query": [
+      {
+        "name": "address",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Contract address of the cryptocurrency.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "symbol",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Filter by the cryptocurrency symbol.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "keyBlockchain",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Filter by blockchain key.",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "type",
+        "required": false,
+        "schema": {
+          "enum": [
+            "coin",
+            "token"
+          ],
+          "type": "string"
+        },
+        "description": "Filtering by cryptocurrency type (coin/token)\nCoin - A native cryptocurrency of its own blockchain. In most cases, it's used to pay transaction fees on the network and may not have a smart contract.\nToken - A digital asset built on top of an existing blockchain. It's used within projects for various purposes such as governance, access to services, staking, and more.\n(Has contract addresses, often on multiple blockchains)",
+        "allowEmptyValue": false
+      },
+      {
+        "name": "include",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hasVesting",
+              "hasFundingRounds",
+              "hasLaunchpools",
+              "hasCrowdsales",
+              "hasNodesales",
+              "hasActivity",
+              "hasTeam",
+              "lifeCycle"
+            ]
+          }
+        },
+        "description": "Specifies additional fields to include in the response. Available values: hasVesting, hasFundingRounds, hasLaunchpools, hasCrowdsales, hasNodesales, hasActivity, hasTeam, lifeCycle. Multiple values can be included (e.g., include=hasVesting,lifeCycle).",
+        "allowEmptyValue": false
+      }
+    ],
+    "pathParams": [],
+    "credits": null
+  }
+}

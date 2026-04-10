@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="tokenGradient" x1="16" y1="2" x2="16" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6C5DD3" />
+      <stop offset="1" stop-color="#4B85F8" />
+    </linearGradient>
+  </defs>
+  <circle cx="16" cy="16" r="14" fill="url(#tokenGradient)" />
+  <path
+    d="M11.5 12.2C11.5 10.2 13.18 8.75 16 8.75C18.74 8.75 20.33 10.06 20.33 12.01C20.33 13.62 19.31 14.69 17.63 15.07V15.17C19.78 15.49 21.14 16.8 21.14 18.66C21.14 20.93 19.19 22.75 16 22.75C13.03 22.75 11.23 21.14 11.18 19.17H13.21C13.28 20.3 14.33 21.23 16.03 21.23C17.83 21.23 18.96 20.22 18.96 18.72C18.96 17.05 17.66 16.18 15.3 16.18H14.53V14.58H15.33C17.26 14.58 18.51 13.84 18.51 12.4C18.51 11.11 17.51 10.25 15.9 10.25C14.45 10.25 13.43 11.04 13.35 12.2H11.5Z"
+    fill="#FFFFFF"
+  />
+</svg>

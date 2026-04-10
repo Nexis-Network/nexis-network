@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Voice Mode: The Future of Hands-Free DeFi with Nex-T1",
+    "description": "Experience revolutionary speech-to-speech AI for DeFi. Execute on-chain transactions, check balances, and manage portfolios using only your voice with Nex-T1's ElevenLabs-powered voice mode.",
+    "slug": "voice-mode-hands-free-defi",
+    "href": "voice-mode-hands-free-defi",
+    "publishedAt": "2025-11-08T15:00:00.000Z",
+    "date": "2025-11-08",
+    "image": "/blog/images/agent-online.png",
+    "category": {
+      "title": "Feature Release",
+      "slug": "feature-release"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Getting Started with Nex-T1: Your AI Copilot for DeFi",
+    "description": "Discover how Nex-T1 transforms DeFi complexity into simple conversations. Learn to automate trading, manage portfolios, and execute on-chain operations with natural language.",
+    "slug": "getting-started-with-nex-t1",
+    "href": "getting-started-with-nex-t1",
+    "publishedAt": "2025-11-08T10:00:00.000Z",
+    "date": "2025-11-08",
+    "image": "/blog/images/next1.jpg",
+    "category": {
+      "title": "Getting Started",
+      "slug": "getting-started"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Deploying the Nex-T1 Command Center in 48 Hours",
+    "description": "How Nexis Network teams bootstrap production-ready agent orchestration in under two days.",
+    "slug": "deploying-nex-t1-command-center",
+    "href": "deploying-nex-t1-command-center",
+    "publishedAt": "2025-11-09T09:00:00.000Z",
+    "date": "2025-11-09",
+    "image": "",
+    "category": {
+      "title": "Launch Guides",
+      "slug": "launch-guides"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Designing Prompt Chains for Multi-Agent Crypto Operations",
+    "description": "Practical flow control patterns for Nex-T1 agents coordinating custody, trading, and compliance tasks.",
+    "slug": "nex-t1-multi-agent-prompting",
+    "href": "nex-t1-multi-agent-prompting",
+    "publishedAt": "2025-08-14T10:15:00.000Z",
+    "date": "2025-08-14",
+    "image": "",
+    "category": {
+      "title": "Prompt Engineering",
+      "slug": "prompt-engineering"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Telemetry-Driven Compliance for Autonomous Portfolios",
+    "description": "Instrument Nex-T1 pipelines with audit trails, anomaly detection, and human-in-the-loop escapes.",
+    "slug": "telemetry-driven-compliance",
+    "href": "telemetry-driven-compliance",
+    "publishedAt": "2025-07-30T12:05:00.000Z",
+    "date": "2025-07-30",
+    "image": "",
+    "category": {
+      "title": "Compliance",
+      "slug": "compliance"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Streaming Market Intelligence into Nex-T1 Agents",
+    "description": "Wire Pyth, Helius, and on-chain risk feeds directly into Nex-T1 strategy nodes.",
+    "slug": "streaming-market-intelligence",
+    "href": "streaming-market-intelligence",
+    "publishedAt": "2025-07-08T09:30:00.000Z",
+    "date": "2025-07-08",
+    "image": "",
+    "category": {
+      "title": "Data Integrations",
+      "slug": "data-integrations"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Human-in-the-Loop Controls that Don’t Break Flow",
+    "description": "Design review checkpoints for Nex-T1 that satisfy auditors without slowing operators.",
+    "slug": "human-in-the-loop-controls",
+    "href": "human-in-the-loop-controls",
+    "publishedAt": "2025-06-19T15:45:00.000Z",
+    "date": "2025-06-19",
+    "image": "",
+    "category": {
+      "title": "Operations",
+      "slug": "operations"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  },
+  {
+    "title": "Migrating Legacy Bots into Nex-T1",
+    "description": "A pragmatic migration roadmap for consolidating Python bots, cron jobs, and spreadsheets into Nex-T1.",
+    "slug": "migrating-legacy-bots",
+    "href": "migrating-legacy-bots",
+    "publishedAt": "2025-05-28T11:20:00.000Z",
+    "date": "2025-05-28",
+    "image": "",
+    "category": {
+      "title": "Migration",
+      "slug": "migration"
+    },
+    "authors": [
+      {
+        "name": "Nexis Labs",
+        "image": "/logo/nexis-profile-photo.png"
+      }
+    ]
+  }
+]

@@ -1,0 +1,102 @@
+{
+    "architecture": {
+        "name": "Nex-T1 Enterprise AI Agent",
+        "description": "Agentic system for cryptocurrency and DeFi operations with Langfuse-backed prompts and HITL execution.",
+        "type": "Agentic RAG with Tool Use",
+        "components": {
+            "controller": {
+                "path": "src/modules/chat/controller.ts",
+                "responsibilities": [
+                    "Request Validation",
+                    "Authentication (Supabase)",
+                    "Rate Limiting (Upstash)",
+                    "Stream Management"
+                ]
+            },
+            "pipeline": {
+                "path": "src/modules/chat/pipeline.ts",
+                "responsibilities": [
+                    "Model Resolution",
+                    "Tool Loading (intent-based + optional MCP)",
+                    "Prompt Engineering (Langfuse + variables + metaprompts)",
+                    "Caching Strategy",
+                    "LLM Execution (streamText)"
+                ]
+            },
+            "toolset": {
+                "path": "src/modules/ai/chatbot/toolset.ts",
+                "responsibilities": [
+                    "Tool loader (tools.json allowlist + lazy imports)",
+                    "Tool Permissioning"
+                ]
+            }
+        }
+    },
+    "stack": [
+        "Next.js 16 (App Router)",
+        "React 19",
+        "TypeScript (strict)",
+        "Vercel AI SDK",
+        "Vercel AI Gateway",
+        "OpenAI GPT-5.x Series",
+        "Supabase",
+        "Redis (Upstash)",
+        "Langfuse",
+        "Sentry",
+        "OpenTelemetry"
+    ],
+    "features": [
+        {
+            "name": "Multi-Step Reasoning",
+            "description": "Optionally streams a reasoning summary (not chain-of-thought) when supported by the active model/route.",
+            "implementation": "providerOptions.openai.reasoningSummary in pipeline.ts"
+        },
+        {
+            "name": "Dynamic Tool Loading",
+            "description": "Loads tools by intent and environment; optional MCP venue tools for read-only research.",
+            "implementation": "loadToolsByIds + loadAiSdkMcpTools"
+        },
+        {
+            "name": "Smart Caching",
+            "description": "Caches responses based on query, model, and attachments.",
+            "implementation": "Redis-based caching in cache.ts"
+        },
+        {
+            "name": "LangFuse Prompt Management",
+            "description": "Dynamic prompt management with versioning and caching for all Nex models.",
+            "implementation": "PromptFactory in src/modules/chat/pipeline/prompt-factory.ts (Langfuse v2 promptsGet + label support)"
+        }
+    ],
+    "files": {
+        "src/app/api/chat/route.ts": "Main API endpoint for chat interactions.",
+        "src/modules/chat/controller.ts": "Handles request processing, auth, and rate limiting.",
+        "src/modules/chat/pipeline.ts": "Core logic for model selection, tool config, and execution.",
+        "src/modules/ai/chatbot/toolset.ts": "Tool loader (tools.json allowlist + lazy imports).",
+        "src/modules/ai/chatbot/constants.ts": "System prompts, model constants, and configuration.",
+        "src/modules/ai/tools/": "Specific crypto and utility tools."
+    },
+    "tools": {
+        "core": [],
+        "crypto": {
+            "evm": [
+                "evm_wallet",
+                "uniswap_poolspy",
+                "etherscan",
+                "alchemy_sdk"
+            ],
+            "solana": [
+                "helius_solana",
+                "pumpfun_trader",
+                "pumpfun_data"
+            ],
+            "general": [
+                "dexscreener",
+                "coingecko_trending",
+                "defi_llama"
+            ]
+        },
+        "integrations": [
+            "MCP toolchain (optional venue tools)"
+        ]
+    }
+}
